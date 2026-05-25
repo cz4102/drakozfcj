@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zaldy B. Cruzado Jr. — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@400;500;600;700&family=Inconsolata:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #070b0f;
+      --bg2: #0c1219;
+      --surface: #0f1720;
+      --card: #131e2b;
+      --border: #1c2c3e;
+      --accent: #e8a020;
+      --accent-dim: rgba(232,160,32,0.12);
+      --cyan: #00d4ff;
+      --cyan-dim: rgba(0,212,255,0.10);
+      --green: #22c564;
+      --text: #dce6f0;
+      --text2: #90a3b8;
+      --muted: #48596e;
+      --font-display: 'Orbitron', monospace;
+      --font-head: 'Rajdhani', sans-serif;
+      --font-body: 'Inconsolata', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Dot grid background */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: radial-gradient(circle, rgba(232,160,32,0.055) 1px, transparent 0);
+      background-size: 30px 30px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Corner accent glow */
+    body::after {
+      content: '';
+      position: fixed;
+      top: -200px; right: -200px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(232,160,32,0.04) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+
+    /* ═══════════════════════════════════════ NAV ═══ */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.9rem 2.5rem;
+      background: rgba(7,11,15,0.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      transition: padding 0.3s;
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 0.85rem; font-weight: 700;
+      color: var(--accent); text-decoration: none;
+      letter-spacing: 3px;
+    }
+    .nav-logo span { color: var(--text2); }
+
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--text2); text-decoration: none;
+      font-family: var(--font-head); font-size: 0.82rem;
+      font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    .nav-cta {
+      background: var(--accent); color: var(--bg);
+      padding: 0.42rem 1.2rem; text-decoration: none;
+      font-family: var(--font-head); font-weight: 700;
+      font-size: 0.82rem; letter-spacing: 1px; text-transform: uppercase;
+      transition: all 0.2s;
+      clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+    }
+    .nav-cta:hover { background: #f5b535; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(232,160,32,0.3); }
+
+    /* ═══════════════════════════════════════ SHARED ═══ */
+    .wrap { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 6rem 2rem; }
+    .wrap.hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding-top: 5rem; }
+
+    .section-tag {
+      font-family: var(--font-display); font-size: 0.6rem;
+      color: var(--accent); letter-spacing: 3px; text-transform: uppercase;
+      margin-bottom: 0.6rem;
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .section-tag::after {
+      content: ''; flex: 1; max-width: 60px; height: 1px;
+      background: var(--accent); opacity: 0.45;
+    }
+
+    .section-title {
+      font-family: var(--font-head);
+      font-size: clamp(1.9rem, 3.8vw, 2.9rem);
+      font-weight: 700; color: var(--text);
+      line-height: 1.15; margin-bottom: 3rem;
+    }
+    .section-title em { color: var(--accent); font-style: normal; }
+
+    .divider {
+      position: relative; z-index: 1;
+      width: 100%; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+    }
+
+    /* ═══════════════════════════════════════ HERO ═══ */
+    .hero-inner {
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 3rem; align-items: center;
+    }
+
+    .hero-location {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.78rem; color: var(--text2);
+      margin-bottom: 1.5rem; letter-spacing: 1px;
+    }
+
+    .dot {
+      width: 7px; height: 7px; border-radius: 50%; background: var(--green);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity:1; transform: scale(1); }
+      50% { opacity:0.4; transform: scale(0.7); }
+    }
+
+    .hero-name {
+      font-family: var(--font-display);
+      font-size: clamp(2.6rem, 6vw, 4.8rem);
+      font-weight: 900; line-height: 1;
+      color: var(--text); margin-bottom: 0.3rem;
+    }
+    .hero-name .acc { color: var(--accent); }
+
+    .hero-title {
+      font-family: var(--font-head);
+      font-size: clamp(1.1rem, 2.2vw, 1.7rem);
+      font-weight: 500; color: var(--text2); margin-bottom: 1.4rem;
+    }
+
+    .hero-desc {
+      font-size: 0.92rem; color: var(--text2);
+      max-width: 520px; line-height: 1.85; margin-bottom: 2rem;
+    }
+    .hero-desc strong { color: var(--text); }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-bottom: 2.5rem; }
+
+    .tag {
+      font-family: var(--font-display); font-size: 0.58rem;
+      letter-spacing: 1.5px; padding: 0.28rem 0.75rem;
+      border: 1px solid var(--border); color: var(--text2);
+      background: var(--surface); transition: all 0.2s;
+    }
+    .tag.a { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
+    .tag.c { border-color: var(--cyan); color: var(--cyan); background: var(--cyan-dim); }
+
+    .btn-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .btn {
+      padding: 0.68rem 1.8rem; text-decoration: none;
+      font-family: var(--font-head); font-weight: 700;
+      font-size: 0.88rem; letter-spacing: 1px; text-transform: uppercase;
+      transition: all 0.2s; display: inline-block;
+    }
+    .btn-p {
+      background: var(--accent); color: var(--bg);
+      clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+    }
+    .btn-p:hover { background: #f5b535; transform: translateY(-2px); box-shadow: 0 10px 28px rgba(232,160,32,0.35); }
+    .btn-o { border: 1px solid var(--border); color: var(--text); }
+    .btn-o:hover { border-color: var(--accent); color: var(--accent); }
+
+    .stats {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1px; background: var(--border);
+      margin-top: 3rem;
+    }
+    .stat { background: var(--card); padding: 1.1rem 1.2rem; }
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: 1.7rem; font-weight: 700;
+      color: var(--accent); line-height: 1;
+    }
+    .stat-num sub { font-size: 0.9rem; color: var(--text2); }
+    .stat-label { font-size: 0.67rem; color: var(--text2); letter-spacing: 1px; margin-top: 0.25rem; text-transform: uppercase; }
+
+    /* Hero card */
+    .hero-card {
+      background: var(--card); border: 1px solid var(--border);
+      padding: 2rem 1.5rem; text-align: center; min-width: 190px;
+      position: relative;
+    }
+    .hero-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--cyan));
+    }
+
+    .avatar {
+      width: 110px; height: 110px;
+      margin: 0 auto 1rem;
+      border: 2px solid var(--accent);
+      background: var(--surface);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-size: 2.2rem;
+      font-weight: 900; color: var(--accent);
+      clip-path: polygon(10% 0%,90% 0%,100% 10%,100% 90%,90% 100%,10% 100%,0% 90%,0% 10%);
+    }
+    .hero-card-name { font-family: var(--font-head); font-size: 0.95rem; font-weight: 700; color: var(--text); margin-bottom: 0.2rem; }
+    .hero-card-sub { font-size: 0.72rem; color: var(--text2); margin-bottom: 1rem; }
+
+    .status {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.65rem; color: var(--green); letter-spacing: 1px;
+      background: rgba(34,197,100,0.08);
+      border: 1px solid rgba(34,197,100,0.28);
+      padding: 0.28rem 0.8rem;
+    }
+
+    /* ═══════════════════════════════════════ ABOUT ═══ */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .about-text { font-size: 0.92rem; line-height: 1.9; color: var(--text2); }
+    .about-text p { margin-bottom: 1rem; }
+    .about-text strong { color: var(--text); }
+
+    .hl-cards { display: flex; flex-direction: column; gap: 0.85rem; }
+    .hl {
+      background: var(--card); border: 1px solid var(--border);
+      border-left: 3px solid var(--accent); padding: 0.9rem 1rem;
+      transition: all 0.2s;
+    }
+    .hl:hover { transform: translateX(4px); }
+    .hl h4 { font-family: var(--font-head); font-size: 0.9rem; font-weight: 700; color: var(--text); margin-bottom: 0.2rem; }
+    .hl p { font-size: 0.78rem; color: var(--text2); }
+
+    /* ═══════════════════════════════════════ EXPERTISE ═══ */
+    .exp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+    .exp-card {
+      background: var(--card); border: 1px solid var(--border);
+      padding: 1.8rem; position: relative; overflow: hidden;
+      transition: all 0.3s;
+    }
+    .exp-card::after {
+      content: ''; position: absolute; bottom: 0; left: 0;
+      width: 0; height: 2px; background: var(--accent);
+      transition: width 0.35s;
+    }
+    .exp-card:hover::after { width: 100%; }
+    .exp-card:hover { border-color: rgba(232,160,32,0.3); transform: translateY(-5px); box-shadow: 0 14px 40px rgba(0,0,0,0.45); }
+
+    .exp-num { font-family: var(--font-display); font-size: 0.58rem; color: var(--accent); letter-spacing: 2px; margin-bottom: 1rem; }
+    .exp-icon { font-size: 1.8rem; margin-bottom: 0.8rem; }
+    .exp-card h3 { font-family: var(--font-head); font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 0.6rem; }
+    .exp-card p { font-size: 0.8rem; color: var(--text2); line-height: 1.7; margin-bottom: 1rem; }
+
+    .tag-list { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+    .tsm {
+      font-size: 0.62rem; padding: 0.18rem 0.55rem;
+      background: var(--surface); border: 1px solid var(--border);
+      color: var(--text2); letter-spacing: 0.5px;
+    }
+
+    /* ═══════════════════════════════════════ PROJECTS ═══ */
+    .proj-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+    .proj-card {
+      background: var(--card); border: 1px solid var(--border);
+      overflow: hidden; transition: all 0.3s;
+    }
+    .proj-card:hover { border-color: rgba(232,160,32,0.4); transform: translateY(-5px); box-shadow: 0 18px 44px rgba(0,0,0,0.5); }
+
+    .proj-img {
+      width: 100%; height: 170px;
+      background: var(--surface);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3.2rem; opacity: 0.35;
+      position: relative; overflow: hidden;
+    }
+    .proj-img img { width: 100%; height: 100%; object-fit: cover; opacity: 1; transition: transform 0.35s; }
+    .proj-card:hover .proj-img img { transform: scale(1.06); }
+
+    .proj-badge {
+      position: absolute; top: 0.6rem; right: 0.6rem;
+      font-family: var(--font-display); font-size: 0.52rem;
+      letter-spacing: 1px; padding: 0.22rem 0.55rem;
+      background: rgba(232,160,32,0.92); color: var(--bg); text-transform: uppercase;
+    }
+
+    .proj-body { padding: 1.4rem; }
+    .proj-cat { font-family: var(--font-display); font-size: 0.58rem; color: var(--accent); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 0.4rem; }
+    .proj-body h3 { font-family: var(--font-head); font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 0.6rem; line-height: 1.3; }
+    .proj-body p { font-size: 0.8rem; color: var(--text2); line-height: 1.7; margin-bottom: 0.9rem; }
+    .proj-links { display: flex; gap: 0.8rem; }
+    .proj-link {
+      font-size: 0.72rem; color: var(--text2); text-decoration: none;
+      letter-spacing: 0.5px; display: flex; align-items: center; gap: 0.3rem;
+      transition: color 0.2s;
+    }
+    .proj-link:hover { color: var(--accent); }
+
+    /* ═══════════════════════════════════════ 3D VIEWER ═══ */
+    .viewer-box {
+      background: var(--card); border: 1px solid var(--border); padding: 1.8rem;
+      margin-bottom: 1.8rem;
+    }
+    .viewer-hdr {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 1.2rem;
+    }
+    .viewer-hdr h3 { font-family: var(--font-head); font-size: 1.05rem; font-weight: 700; color: var(--text); }
+    .vbadge { font-size: 0.6rem; color: var(--cyan); border: 1px solid var(--cyan); padding: 0.18rem 0.55rem; letter-spacing: 1px; }
+
+    #model-wrap {
+      width: 100%; height: 400px;
+      background: var(--bg); border: 1px solid var(--border);
+      position: relative; overflow: hidden;
+    }
+    #model-canvas { width: 100%; height: 100%; display: block; }
+
+    .drop-zone {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 0.8rem;
+      cursor: pointer; transition: background 0.2s;
+    }
+    .drop-zone:hover, .drop-zone.hover { background: rgba(232,160,32,0.04); }
+    .drop-zone .di { font-size: 3rem; opacity: 0.35; }
+    .drop-zone .dt { font-family: var(--font-head); font-size: 1rem; color: var(--text2); text-align: center; }
+    .drop-zone .dh { font-size: 0.73rem; color: var(--muted); text-align: center; line-height: 1.6; }
+    .drop-zone .dh em { color: var(--accent); font-style: normal; }
+
+    .drop-btn {
+      font-family: var(--font-display); font-size: 0.6rem; letter-spacing: 2px;
+      padding: 0.45rem 1.4rem; background: transparent;
+      color: var(--accent); border: 1px solid var(--accent);
+      cursor: pointer; text-transform: uppercase; transition: all 0.2s;
+    }
+    .drop-btn:hover { background: var(--accent-dim); }
+
+    .model-ctrls { display: flex; gap: 0.5rem; padding: 0.7rem 0; flex-wrap: wrap; }
+    .cbtn {
+      font-family: var(--font-display); font-size: 0.57rem;
+      padding: 0.32rem 0.9rem; background: var(--surface);
+      color: var(--text2); border: 1px solid var(--border);
+      cursor: pointer; letter-spacing: 1px; transition: all 0.2s;
+    }
+    .cbtn:hover, .cbtn.on { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
+
+    /* Gallery */
+    .gallery-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 0.85rem; margin-bottom: 0.5rem;
+    }
+    .gi {
+      aspect-ratio: 1; background: var(--surface); border: 1px solid var(--border);
+      overflow: hidden; cursor: pointer; transition: all 0.2s;
+    }
+    .gi img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+    .gi:hover img { transform: scale(1.08); }
+    .gi:hover { border-color: var(--accent); }
+    .gadd {
+      aspect-ratio: 1; background: var(--surface); border: 1px dashed var(--border);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      cursor: pointer; gap: 0.35rem; font-size: 0.68rem; color: var(--muted);
+      transition: all 0.2s;
+    }
+    .gadd:hover { border-color: var(--accent); color: var(--accent); }
+    .gadd .plus { font-size: 1.5rem; }
+
+    /* Lightbox */
+    .lb {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.95);
+      z-index: 500; display: none; align-items: center; justify-content: center;
+    }
+    .lb.on { display: flex; }
+    .lb img { max-width: 90vw; max-height: 90vh; object-fit: contain; }
+    .lb-close {
+      position: absolute; top: 1rem; right: 1rem;
+      font-size: 2rem; color: var(--text); cursor: pointer;
+      background: none; border: none; line-height: 1;
+    }
+
+    /* ═══════════════════════════════════════ SKILLS ═══ */
+    .sk-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2.5rem; }
+    .sk-group h4 {
+      font-family: var(--font-display); font-size: 0.6rem;
+      color: var(--accent); letter-spacing: 2px; text-transform: uppercase;
+      margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border);
+    }
+    .sk-item {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.55rem 0; border-bottom: 1px solid rgba(28,44,62,0.5);
+    }
+    .sk-name { font-size: 0.83rem; color: var(--text); }
+    .sk-bar-wrap { width: 76px; height: 3px; background: var(--surface); border-radius: 2px; overflow: hidden; }
+    .sk-bar { height: 100%; background: linear-gradient(90deg, var(--accent), var(--cyan)); border-radius: 2px; }
+
+    /* ═══════════════════════════════════════ TIMELINE ═══ */
+    .tl { position: relative; padding-left: 2rem; }
+    .tl::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+      width: 1px; background: linear-gradient(to bottom, var(--accent), transparent);
+    }
+    .tl-item { position: relative; padding-bottom: 2.8rem; }
+    .tl-dot {
+      position: absolute; left: -2.32rem; top: 0.2rem;
+      width: 11px; height: 11px; background: var(--accent);
+      border: 2px solid var(--bg); box-shadow: 0 0 0 2px var(--accent);
+    }
+    .tl-period { font-family: var(--font-display); font-size: 0.58rem; color: var(--accent); letter-spacing: 2px; margin-bottom: 0.45rem; }
+    .tl-card { background: var(--card); border: 1px solid var(--border); padding: 1.4rem; }
+    .tl-card h3 { font-family: var(--font-head); font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 0.2rem; }
+    .tl-card h4 { font-size: 0.8rem; color: var(--text2); margin-bottom: 0.9rem; }
+    .tl-card ul { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
+    .tl-card li { font-size: 0.83rem; color: var(--text2); padding-left: 1rem; position: relative; line-height: 1.5; }
+    .tl-card li::before { content: '▸'; position: absolute; left: 0; color: var(--accent); font-size: 0.68rem; top: 0.15rem; }
+
+    /* ═══════════════════════════════════════ BADGES ═══ */
+    .badges { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.9rem; }
+    .badge {
+      display: flex; align-items: center; gap: 0.9rem;
+      background: var(--card); border: 1px solid var(--border);
+      padding: 0.9rem 1rem; transition: all 0.2s;
+    }
+    .badge:hover { border-color: var(--accent); }
+    .badge-icon { font-size: 1.4rem; }
+    .badge h4 { font-family: var(--font-head); font-size: 0.83rem; font-weight: 700; color: var(--text); }
+    .badge p { font-size: 0.7rem; color: var(--text2); margin-top: 0.1rem; }
+
+    /* ═══════════════════════════════════════ CONTACT ═══ */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .contact-intro p { font-size: 0.92rem; color: var(--text2); line-height: 1.85; margin-bottom: 2rem; }
+    .cl-links { display: flex; flex-direction: column; gap: 0.85rem; }
+    .cl {
+      display: flex; align-items: center; gap: 1rem;
+      background: var(--card); border: 1px solid var(--border);
+      text-decoration: none; padding: 0.95rem 1rem; transition: all 0.2s;
+    }
+    .cl:hover { border-color: var(--accent); transform: translateX(4px); }
+    .cl-icon { font-size: 1.2rem; width: 38px; text-align: center; }
+    .cl-lbl { font-size: 0.67rem; color: var(--text2); letter-spacing: 1px; text-transform: uppercase; }
+    .cl-val { font-size: 0.88rem; color: var(--text); margin-top: 0.1rem; }
+
+    /* ═══════════════════════════════════════ FOOTER ═══ */
+    footer {
+      position: relative; z-index: 1; text-align: center;
+      padding: 2rem; border-top: 1px solid var(--border);
+      font-size: 0.73rem; color: var(--muted);
+    }
+    footer span { color: var(--accent); }
+
+    /* ═══════════════════════════════════════ ANIMATIONS ═══ */
+    .fi { opacity: 0; transform: translateY(22px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .fi.on { opacity: 1; transform: translateY(0); }
+    .fi:nth-child(2) { transition-delay: 0.1s; }
+    .fi:nth-child(3) { transition-delay: 0.2s; }
+    .fi:nth-child(4) { transition-delay: 0.3s; }
+
+    /* ═══════════════════════════════════════ RESPONSIVE ═══ */
+    @media (max-width: 820px) {
+      .nav-links { display: none; }
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-card { display: none; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .stats { grid-template-columns: repeat(2,1fr); }
+      nav { padding: 0.9rem 1.2rem; }
+      .wrap { padding: 4.5rem 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav>
+  <a href="#" class="nav-logo">DRAKOZ<span>.FCJ</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#expertise">Expertise</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#creative">3D &amp; Gallery</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:cruzado.zaldy.072603@gmail.com" class="nav-cta">Hire Me</a>
+</nav>
+
+<!-- ══ HERO ══ -->
+<div class="wrap hero" id="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-location">
+        <span class="dot"></span>
+        Bacoor City, Cavite · PH &nbsp;·&nbsp; Open to Engineering Roles
+      </div>
+      <h1 class="hero-name">ZALDY<br><span class="acc">CRUZADO</span></h1>
+      <p class="hero-title">Computer Engineer · Hardware Designer · 3D Maker</p>
+      <p class="hero-desc">
+        BS Computer Engineering graduate specializing in <strong>embedded systems, IoT hardware</strong>, and
+        <strong>3D design & fabrication</strong>. Built scalable multi-device systems, real-time wearables,
+        and 3D-printed enclosures — from firmware to final form factor.
+      </p>
+      <div class="tags">
+        <span class="tag a">ESP32</span>
+        <span class="tag a">Embedded Systems</span>
+        <span class="tag">IoT</span>
+        <span class="tag">Raspberry Pi</span>
+        <span class="tag">Python / Flask</span>
+        <span class="tag">3D Printing</span>
+        <span class="tag c">Blender</span>
+        <span class="tag">KiCad</span>
+        <span class="tag">C++</span>
+        <span class="tag">REST API</span>
+      </div>
+      <div class="btn-row">
+        <a href="#projects" class="btn btn-p">View Projects</a>
+        <a href="#creative" class="btn btn-o">3D Models</a>
+        <a href="#contact" class="btn btn-o">Get In Touch</a>
+      </div>
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-num">5<sub>+</sub></div>
+          <div class="stat-label">Projects Built</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">300<sub>h</sub></div>
+          <div class="stat-label">R&amp;D Internship</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">2026</div>
+          <div class="stat-label">BS CompE Grad</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">🏆</div>
+          <div class="stat-label">Top Thesis</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="avatar">ZC</div>
+      <div class="hero-card-name">Zaldy B. Cruzado Jr.</div>
+      <div class="hero-card-sub">BS CompE · STI Las Piñas · 2026</div>
+      <span class="status"><span class="dot"></span> Open to Work</span>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══ ABOUT ══ -->
+<div class="wrap" id="about">
+  <div class="section-tag">01 / About Me</div>
+  <h2 class="section-title">Builder. Maker. <em>Engineer.</em></h2>
+  <div class="about-grid">
+    <div class="about-text fi">
+      <p>
+        I'm a Computer Engineering graduate from STI College Las Piñas with a passion for
+        <strong>building hardware that works in the real world</strong>. From engineering multi-channel SMS gateway
+        appliances to assembling wearable biosensors and 3D-printing custom enclosures — I care about the
+        full product, from circuit board to form factor.
+      </p>
+      <p>
+        During my R&amp;D internship at <strong>IoT Technologies Incorporated</strong>, I designed and shipped
+        OmniTXT — a production-grade IoT appliance with embedded firmware, a Python/Flask backend,
+        web dashboard, REST API, and a 3D-printed enclosure.
+      </p>
+      <p>
+        Outside engineering, I create — <strong>3D modeling in Blender</strong>, music production in FL Studio,
+        digital illustration in Clip Studio Art, and video editing in Premiere Pro. I believe the best engineers
+        build with craft and intention.
+      </p>
+    </div>
+    <div class="hl-cards fi">
+      <div class="hl">
+        <h4>🔬 R&amp;D Intern — IoT Technologies Inc.</h4>
+        <p>Designed and shipped the OmniTXT 16-channel SMS gateway appliance from hardware to full deployment.</p>
+      </div>
+      <div class="hl">
+        <h4>🏆 Top Thesis Candidate</h4>
+        <p>Recognized at ICT Research Symposium 2025 for technical delivery and data analysis excellence.</p>
+      </div>
+      <div class="hl">
+        <h4>🎯 Best Research Presenter</h4>
+        <p>Wearable Heart Rate Monitor achieving 88.52% CAD prediction accuracy via Logistic Regression.</p>
+      </div>
+      <div class="hl">
+        <h4>🎮 Game Changer Champion</h4>
+        <p>Illutrace anti-slip light tracing board — champion at the 2024 Entrepreneurship Expo.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══ EXPERTISE ══ -->
+<div class="wrap" id="expertise">
+  <div class="section-tag">02 / Engineering Focus</div>
+  <h2 class="section-title">Areas of <em>Expertise</em></h2>
+  <div class="exp-grid">
+    <div class="exp-card fi">
+      <div class="exp-num">01</div>
+      <div class="exp-icon">🔌</div>
+      <h3>Embedded Systems &amp; IoT</h3>
+      <p>Hands-on design and programming of ESP32 (38-pin, C3), Arduino, and Raspberry Pi systems — sensor integration, serial communication, GSM/SIM modems, and real-world firmware deployment.</p>
+      <div class="tag-list">
+        <span class="tsm">ESP32</span><span class="tsm">Arduino</span><span class="tsm">Raspberry Pi</span><span class="tsm">C++</span><span class="tsm">AT Commands</span>
+      </div>
+    </div>
+    <div class="exp-card fi">
+      <div class="exp-num">02</div>
+      <div class="exp-icon">🖨️</div>
+      <h3>3D Design &amp; Fabrication</h3>
+      <p>End-to-end hardware enclosure design using Blender and KiCad, fabricated via FDM 3D printing. Designed production-grade dual-tier enclosures with SIM access, antenna routing, and I/O panels.</p>
+      <div class="tag-list">
+        <span class="tsm">Blender</span><span class="tsm">KiCad</span><span class="tsm">FDM Printing</span><span class="tsm">PCB Design</span><span class="tsm">Soldering</span>
+      </div>
+    </div>
+    <div class="exp-card fi">
+      <div class="exp-num">03</div>
+      <div class="exp-icon">🐍</div>
+      <h3>Backend &amp; System Integration</h3>
+      <p>Multi-threaded Python/Flask backends with REST APIs, MySQL, Apache deployment, hot-plug detection, and automatic failover — built for production IoT appliances.</p>
+      <div class="tag-list">
+        <span class="tsm">Python</span><span class="tsm">Flask</span><span class="tsm">MySQL</span><span class="tsm">REST API</span><span class="tsm">Apache</span>
+      </div>
+    </div>
+    <div class="exp-card fi">
+      <div class="exp-num">04</div>
+      <div class="exp-icon">🧬</div>
+      <h3>Biosensors &amp; ML Integration</h3>
+      <p>Applied Logistic Regression to MAX30102 heart rate sensor data on a wearable Seeed XIAO ESP32-C3, achieving 88.52% CAD risk prediction accuracy with a custom 3D-printed enclosure.</p>
+      <div class="tag-list">
+        <span class="tsm">MAX30102</span><span class="tsm">XIAO ESP32-C3</span><span class="tsm">Logistic Regression</span><span class="tsm">Wearables</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══ PROJECTS ══ -->
+<div class="wrap" id="projects">
+  <div class="section-tag">03 / Portfolio</div>
+  <h2 class="section-title">Engineering <em>Projects</em></h2>
+  <div class="proj-grid">
+
+    <div class="proj-card fi">
+      <div class="proj-img">
+        📡
+        <span class="proj-badge">⭐ R&amp;D Internship</span>
+      </div>
+      <div class="proj-body">
+        <div class="proj-cat">IoT · SMS Gateway · Hardware</div>
+        <h3>OmniTXT — Multi-Channel SMS Gateway Appliance</h3>
+        <p>Engineered a 16-SIM concurrent SMS gateway with a multi-threaded Python/Flask backend featuring hot-plug detection, automatic failover, web dashboard, and key-based REST API. Designed and 3D-printed the custom dual-tier enclosure.</p>
+        <div class="tag-list" style="margin-bottom:0.9rem">
+          <span class="tsm">16× SIM</span><span class="tsm">ESP32</span><span class="tsm">Flask</span><span class="tsm">MySQL</span><span class="tsm">3D Print</span><span class="tsm">Apache</span>
+        </div>
+        <div class="proj-links">
+          <a href="https://drakozfcj.carrd.co" class="proj-link" target="_blank">↗ Portfolio</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="proj-card fi">
+      <div class="proj-img">💊</div>
+      <div class="proj-body">
+        <div class="proj-cat">Embedded · Healthcare IoT</div>
+        <h3>ALMA — Smart Medicine Dispenser</h3>
+        <p>Designed and assembled an ESP32-based smart dispenser with automated scheduling via PCA9685, sensor integration, and real-time alerts. Wrote all embedded firmware, ran full system testing, and documented the hardware architecture.</p>
+        <div class="tag-list" style="margin-bottom:0.9rem">
+          <span class="tsm">ESP32</span><span class="tsm">PCA9685</span><span class="tsm">C++</span><span class="tsm">Sensors</span><span class="tsm">Embedded Firmware</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="proj-card fi">
+      <div class="proj-img">
+        ❤️
+        <span class="proj-badge">⭐ Thesis — Top Candidate</span>
+      </div>
+      <div class="proj-body">
+        <div class="proj-cat">Wearable · AI · Biosensors</div>
+        <h3>Wearable Heart Rate Monitor + CAD Risk Predictor</h3>
+        <p>Built a wearable using Seeed XIAO ESP32-C3 and MAX30102, achieving 88.52% CAD prediction accuracy via Logistic Regression. Led hardware assembly, 3D enclosure modeling in Blender, and all project documentation.</p>
+        <div class="tag-list" style="margin-bottom:0.9rem">
+          <span class="tsm">XIAO ESP32-C3</span><span class="tsm">MAX30102</span><span class="tsm">ML</span><span class="tsm">Blender</span><span class="tsm">3D Print</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="proj-card fi">
+      <div class="proj-img">
+        ✏️
+        <span class="proj-badge">🏆 Game Changer Champion</span>
+      </div>
+      <div class="proj-body">
+        <div class="proj-cat">Product Design · Entrepreneurship</div>
+        <h3>Illutrace — Anti-Slip Light Tracing Board</h3>
+        <p>Designed an ergonomic anti-slip light tracing board that won Game Changer Champion at the 2024 Entrepreneurship Expo. Combined hardware prototyping, product design, and business presentation.</p>
+        <div class="tag-list" style="margin-bottom:0.9rem">
+          <span class="tsm">Product Design</span><span class="tsm">Prototyping</span><span class="tsm">Hardware</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══ 3D VIEWER & GALLERY ══ -->
+<div class="wrap" id="creative">
+  <div class="section-tag">04 / Creative Works</div>
+  <h2 class="section-title">3D Models & <em>Gallery</em></h2>
+
+  <!-- 3D Viewer -->
+  <div class="viewer-box fi">
+    <div class="viewer-hdr">
+      <h3>⬡ 3D Model Viewer</h3>
+      <span class="vbadge">GLB / GLTF</span>
+    </div>
+    <div id="model-wrap">
+      <canvas id="model-canvas"></canvas>
+      <div class="drop-zone" id="drop-zone">
+        <div class="di">⬡</div>
+        <div class="dt">Drop your 3D model here</div>
+        <div class="dh">
+          Supports <strong>.glb</strong> / <strong>.gltf</strong> files<br>
+          <em>Blender → File &gt; Export &gt; glTF 2.0 (.glb) to convert your .blend</em>
+        </div>
+        <button class="drop-btn" id="pick-btn">Browse File</button>
+        <input type="file" id="model-input" accept=".glb,.gltf" style="display:none">
+      </div>
+    </div>
+    <div class="model-ctrls">
+      <button class="cbtn on" id="btn-rotate">⟳ Auto Rotate</button>
+      <button class="cbtn" id="btn-wire">⬡ Wireframe</button>
+      <button class="cbtn" id="btn-reset">⌂ Reset View</button>
+      <button class="cbtn" id="btn-clear">✕ Clear Model</button>
+    </div>
+  </div>
+
+  <!-- Photo Gallery -->
+  <div class="viewer-box fi">
+    <div class="viewer-hdr">
+      <h3>📷 Project Photos &amp; Renders</h3>
+      <span class="vbadge">Click + to Add</span>
+    </div>
+    <div class="gallery-grid" id="gal">
+      <div class="gadd" id="gadd">
+        <span class="plus">+</span>
+        <span>Add Photos</span>
+      </div>
+      <input type="file" id="gal-input" accept="image/*" multiple style="display:none">
+    </div>
+  </div>
+</div>
+
+<!-- Lightbox -->
+<div class="lb" id="lb">
+  <button class="lb-close" id="lb-close">✕</button>
+  <img id="lb-img" src="" alt="">
+</div>
+
+<div class="divider"></div>
+
+<!-- ══ SKILLS ══ -->
+<div class="wrap" id="skills">
+  <div class="section-tag">05 / Technical Stack</div>
+  <h2 class="section-title">Skills & <em>Tools</em></h2>
+  <div class="sk-cols">
+    <div class="sk-group fi">
+      <h4>Hardware &amp; Embedded</h4>
+      <div class="sk-item"><span class="sk-name">ESP32 / Arduino</span><div class="sk-bar-wrap"><div class="sk-bar" style="width:92%"></div></div></div>
+      <div class="sk-item"><span class="sk-name">Raspberry Pi</span><div class="sk-bar-wrap"><div class="sk-bar" style="width:80%"></div></div></div>
+      <div class="sk-item"><span class="sk-name">Circuit Integration</span><div class="sk-bar-wrap"><div class="sk-bar" style="width:85%"></div></div></div>
+      <div class="sk-item"><span class="sk-name">Soldering</span><div class="sk-bar-wrap"><div class="sk-bar" style="width:82%"></div></div></div>
+      <div class="sk-item"><span class="sk-name">GSM Modems / AT Commands</span><div class="sk-bar-wrap"><div class="sk-bar" style="width:88%"></div></div></div>
+      <div class="sk-item"><span class="sk-name">Sensors (MAX30102, etc.)</span><div class="sk-bar-wrap"><div class="sk-bar" style="width:85%"></div></div></div>
+    </div>
+    <div class="sk-group fi">
+      <h4>Programming</h4>
+      <div class="sk-item"><span class="sk-name">C++ (Arduino / Embedded)</span><div class="sk-bar-wrap"><div class="sk-bar" style="width:85%"></div></div></div>
+      <div class="sk-item"><span class="sk-name">Python / Flask</span><div class="sk-bar-wrap"><div class="sk-bar" style="width:82%"></div></div></div>
+      <div class="sk-item"><span class="sk-name">MySQL</span><div class="sk-bar-wrap"><div class="sk-bar" style="width:75%"></div></div></div>
+      <div class="sk-item"><span class="sk-name">Java</span><div class="sk-bar-wrap"><div class="sk-bar" style="width:65%"></div></div></div>
+      <div class="sk-item"><span class="sk-name">REST API / Apache</span><div class="sk-bar-wrap"><div class="sk-bar" style="width:78%"></div></div></div>
+    </div>
+    <div class="sk-group fi">
+      <h4>Design &amp; Fabrication</h4>
+      <div class="sk-item"><span class="sk-name">Blender (3D Modeling)</span><div class="sk-bar-wrap"><div class="sk-bar" style="width:80%"></div></div></div>
+      <div class="sk-item"><span class="sk-name">KiCad (PCB Design)</span><div class="sk-bar-wrap"><div class="sk-bar" style="width:70%"></div></div></div>
+      <div class="sk-item"><span class="sk-name">3D Printing (FDM)</span><div class="sk-bar-wrap"><div class="sk-bar" style="width:87%"></div></div></div>
+      <div class="sk-item"><span class="sk-name">Arduino IDE</span><div class="sk-bar-wrap"><div class="sk-bar" style="width:92%"></div></div></div>
+    </div>
+    <div class="sk-group fi">
+      <h4>Creative Suite</h4>
+      <div class="sk-item"><span class="sk-name">FL Studio / Audacity</span><div class="sk-bar-wrap"><div class="sk-bar" style="width:78%"></div></div></div>
+      <div class="sk-item"><span class="sk-name">Premiere Pro / After Effects</span><div class="sk-bar-wrap"><div class="sk-bar" style="width:72%"></div></div></div>
+      <div class="sk-item"><span class="sk-name">ibisPaint / Clip Studio Art</span><div class="sk-bar-wrap"><div class="sk-bar" style="width:75%"></div></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══ EXPERIENCE ══ -->
+<div class="wrap" id="experience">
+  <div class="section-tag">06 / My Journey</div>
+  <h2 class="section-title">Experience & <em>Education</em></h2>
+  <div class="tl">
+    <div class="tl-item fi">
+      <div class="tl-dot"></div>
+      <div class="tl-period">2026 — R&amp;D INTERNSHIP</div>
+      <div class="tl-card">
+        <h3>Research &amp; Development Intern · Hardware Designer</h3>
+        <h4>IoT Technologies Incorporated — Cavite / NCR · 300 Hours OJT</h4>
+        <ul>
+          <li>Engineered OmniTXT — a production-grade multi-channel SMS gateway supporting 16 concurrent SIM operations.</li>
+          <li>Designed and 3D-printed a custom dual-tier enclosure with SIM access, antenna routing, and USB/Ethernet I/O.</li>
+          <li>Built a multi-threaded Python/Flask backend with parallel SMS dispatch, hot-plug detection, and automatic failover.</li>
+          <li>Deployed full stack: Apache, MySQL, web dashboard, and a REST API with key-based authentication.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tl-item fi">
+      <div class="tl-dot"></div>
+      <div class="tl-period">OCTOBER 2025</div>
+      <div class="tl-card">
+        <h3>Sound Technician — Technical Volunteer</h3>
+        <h4>Philippine Robotics Cup 2025</h4>
+        <ul>
+          <li>Managed live audio engineering for active robotics competition rounds.</li>
+          <li>Supported event operations and technical setup for the national robotics competition.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tl-item fi">
+      <div class="tl-dot"></div>
+      <div class="tl-period">2025 — ICT SYMPOSIUM</div>
+      <div class="tl-card">
+        <h3>Top Thesis Candidate &amp; Best Research Presenter</h3>
+        <h4>ICT Research Symposium — STI College Las Piñas</h4>
+        <ul>
+          <li>Recognized for technical delivery and data analysis of the Wearable Heart Rate Monitor with CAD Risk Prediction.</li>
+          <li>Presented to faculty, industry guests, and STI's academic evaluation panel.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tl-item fi">
+      <div class="tl-dot"></div>
+      <div class="tl-period">2022 – 2026</div>
+      <div class="tl-card">
+        <h3>Bachelor of Science in Computer Engineering</h3>
+        <h4>STI College Las Piñas — Expected Graduation: 2026</h4>
+        <ul>
+          <li>Specialized in embedded systems, hardware-software integration, and IoT development.</li>
+          <li>Thesis: Wearable Real-Time Heart Rate Monitor with CAD Risk Prediction (Top Thesis Candidate).</li>
+          <li>Completed 300-hour R&amp;D internship at IoT Technologies Inc.</li>
+          <li>Dean's Lister A.Y. 2022–2023 · Most Improved Electronics Technician 2024.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tl-item fi">
+      <div class="tl-dot"></div>
+      <div class="tl-period">GRADUATED 2022</div>
+      <div class="tl-card">
+        <h3>Science, Technology, Engineering &amp; Mathematics (STEM)</h3>
+        <h4>High School within Bacoor Elementary School — Graduated with Honors</h4>
+        <ul>
+          <li>Academic Excellence with Honors · Best Research Award 2022.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══ ACHIEVEMENTS ══ -->
+<div class="wrap" id="achievements">
+  <div class="section-tag">07 / Recognition</div>
+  <h2 class="section-title">Achievements & <em>Awards</em></h2>
+  <div class="badges">
+    <div class="badge fi"><span class="badge-icon">🏆</span><div><h4>Top Thesis Candidate</h4><p>ICT Research Symposium · 2025</p></div></div>
+    <div class="badge fi"><span class="badge-icon">🎤</span><div><h4>Best Research Presenter</h4><p>ICT Research Symposium · 2025</p></div></div>
+    <div class="badge fi"><span class="badge-icon">🎮</span><div><h4>Game Changer Champion</h4><p>Entrepreneurship Expo · 2024</p></div></div>
+    <div class="badge fi"><span class="badge-icon">🔧</span><div><h4>Most Improved Electronics Technician</h4><p>STI College · 2024</p></div></div>
+    <div class="badge fi"><span class="badge-icon">📚</span><div><h4>Dean's Lister</h4><p>A.Y. 2022–2023</p></div></div>
+    <div class="badge fi"><span class="badge-icon">🎓</span><div><h4>Academic Excellence with Honors</h4><p>Senior High School · 2022</p></div></div>
+    <div class="badge fi"><span class="badge-icon">🔬</span><div><h4>Best Research Award</h4><p>2022</p></div></div>
+    <div class="badge fi"><span class="badge-icon">🤖</span><div><h4>Philippine Robotics Cup</h4><p>Sound Technician · Oct 2025</p></div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══ CONTACT ══ -->
+<div class="wrap" id="contact">
+  <div class="section-tag">08 / Let's Connect</div>
+  <h2 class="section-title">Open to <em>Engineering Roles</em></h2>
+  <div class="contact-grid">
+    <div class="contact-intro fi">
+      <p>
+        Looking for embedded systems, IoT hardware, or hardware-software integration roles.
+        If you need someone who can design circuits, write firmware, 3D-print enclosures,
+        and ship the full stack — let's talk.
+      </p>
+      <a href="mailto:cruzado.zaldy.072603@gmail.com" class="btn btn-p">Send a Message</a>
+    </div>
+    <div class="cl-links fi">
+      <a href="mailto:cruzado.zaldy.072603@gmail.com" class="cl">
+        <span class="cl-icon">✉️</span>
+        <div><div class="cl-lbl">Email</div><div class="cl-val">cruzado.zaldy.072603@gmail.com</div></div>
+      </a>
+      <a href="tel:+639663782936" class="cl">
+        <span class="cl-icon">📱</span>
+        <div><div class="cl-lbl">Phone</div><div class="cl-val">0966-378-2936</div></div>
+      </a>
+      <a href="https://drakozfcj.carrd.co" target="_blank" class="cl">
+        <span class="cl-icon">🌐</span>
+        <div><div class="cl-lbl">Portfolio</div><div class="cl-val">drakozfcj.carrd.co</div></div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span>&lt;/&gt;</span> Built by Zaldy B. Cruzado Jr. · 2026 · Bacoor City, Cavite
+</footer>
+
+<!-- ══ THREE.JS ══ -->
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://esm.sh/three@0.160.0",
+    "three/addons/": "https://esm.sh/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+// ─── Renderer ───────────────────────────────────────────
+const canvas = document.getElementById('model-canvas');
+const wrap   = document.getElementById('model-wrap');
+const dropZone = document.getElementById('drop-zone');
+
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+renderer.setPixelRatio(window.devicePixelRatio);
+renderer.shadowMap.enabled = true;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.1;
+
+// ─── Scene ──────────────────────────────────────────────
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x070b0f);
+scene.fog = new THREE.FogExp2(0x070b0f, 0.035);
+
+// ─── Camera ─────────────────────────────────────────────
+const camera = new THREE.PerspectiveCamera(45, 1, 0.01, 1000);
+camera.position.set(3, 2, 3);
+
+// ─── Controls ───────────────────────────────────────────
+const controls = new OrbitControls(camera, canvas);
+controls.enableDamping = true;
+controls.dampingFactor = 0.06;
+controls.autoRotate = true;
+controls.autoRotateSpeed = 1.2;
+controls.minDistance = 0.5;
+controls.maxDistance = 20;
+
+// ─── Lights ─────────────────────────────────────────────
+scene.add(new THREE.AmbientLight(0xffffff, 0.35));
+
+const key = new THREE.DirectionalLight(0xffd070, 1.5);
+key.position.set(5, 8, 5);
+key.castShadow = true;
+scene.add(key);
+
+const fill = new THREE.DirectionalLight(0x00d4ff, 0.6);
+fill.position.set(-5, 2, -4);
+scene.add(fill);
+
+const rim = new THREE.DirectionalLight(0xffffff, 0.25);
+rim.position.set(0, -4, -5);
+scene.add(rim);
+
+// Ground plane
+const ground = new THREE.Mesh(
+  new THREE.PlaneGeometry(20, 20),
+  new THREE.MeshStandardMaterial({ color: 0x0a1018, roughness: 1, metalness: 0 })
+);
+ground.rotation.x = -Math.PI / 2;
+ground.position.y = -1.2;
+ground.receiveShadow = true;
+scene.add(ground);
+
+// Grid
+scene.add(new THREE.GridHelper(14, 24, 0x1c2c3e, 0x1c2c3e));
+
+// ─── Placeholder — animated torus knot ──────────────────
+let placeholder = new THREE.Mesh(
+  new THREE.TorusKnotGeometry(0.55, 0.18, 140, 36),
+  new THREE.MeshStandardMaterial({ color: 0xe8a020, metalness: 0.85, roughness: 0.15 })
+);
+scene.add(placeholder);
+
+let model = null;
+let isWireframe = false;
+let isAutoRotate = true;
+
+// ─── Resize ─────────────────────────────────────────────
+function resize() {
+  const w = wrap.clientWidth, h = wrap.clientHeight;
+  renderer.setSize(w, h, false);
+  camera.aspect = w / h;
+  camera.updateProjectionMatrix();
+}
+resize();
+window.addEventListener('resize', resize);
+
+// ─── Animate ────────────────────────────────────────────
+(function animate() {
+  requestAnimationFrame(animate);
+  controls.update();
+  if (placeholder) {
+    placeholder.rotation.y += 0.006;
+    placeholder.rotation.x += 0.002;
+  }
+  renderer.render(scene, camera);
+})();
+
+// ─── Load GLB ───────────────────────────────────────────
+const loader = new GLTFLoader();
+
+function loadModel(file) {
+  const url = URL.createObjectURL(file);
+  loader.load(url, gltf => {
+    if (model)       { scene.remove(model); model = null; }
+    if (placeholder) { scene.remove(placeholder); placeholder = null; }
+    dropZone.style.display = 'none';
+
+    model = gltf.scene;
+    model.traverse(c => { if (c.isMesh) { c.castShadow = true; c.receiveShadow = true; } });
+
+    // Center + scale to fit
+    const box = new THREE.Box3().setFromObject(model);
+    const center = box.getCenter(new THREE.Vector3());
+    const size   = box.getSize(new THREE.Vector3());
+    const scale  = 2.2 / Math.max(size.x, size.y, size.z);
+    model.scale.setScalar(scale);
+    model.position.sub(center.clone().multiplyScalar(scale));
+
+    scene.add(model);
+    camera.position.set(3, 2, 3);
+    controls.reset();
+    URL.revokeObjectURL(url);
+  }, undefined, err => {
+    console.error(err);
+    alert('Could not load model. Please use a valid .glb or .gltf file.\n\nIn Blender: File → Export → glTF 2.0 (.glb)');
+  });
+}
+
+// ─── File input ─────────────────────────────────────────
+const modelInput = document.getElementById('model-input');
+document.getElementById('pick-btn').addEventListener('click', () => modelInput.click());
+modelInput.addEventListener('change', e => { if (e.target.files[0]) loadModel(e.target.files[0]); });
+
+// ─── Drag & drop ────────────────────────────────────────
+wrap.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('hover'); });
+wrap.addEventListener('dragleave', () => dropZone.classList.remove('hover'));
+wrap.addEventListener('drop', e => {
+  e.preventDefault(); dropZone.classList.remove('hover');
+  const f = e.dataTransfer.files[0];
+  if (f && (f.name.endsWith('.glb') || f.name.endsWith('.gltf'))) {
+    loadModel(f);
+  } else {
+    alert('Please drop a .glb or .gltf file.\nFrom Blender: File → Export → glTF 2.0');
+  }
+});
+
+// ─── Controls ───────────────────────────────────────────
+document.getElementById('btn-rotate').addEventListener('click', function() {
+  isAutoRotate = !isAutoRotate;
+  controls.autoRotate = isAutoRotate;
+  this.classList.toggle('on', isAutoRotate);
+  this.textContent = isAutoRotate ? '⟳ Auto Rotate' : '⟳ Rotate Off';
+});
+
+document.getElementById('btn-wire').addEventListener('click', function() {
+  isWireframe = !isWireframe;
+  this.classList.toggle('on', isWireframe);
+  const target = model || placeholder;
+  if (target) target.traverse(c => { if (c.isMesh) c.material.wireframe = isWireframe; });
+});
+
+document.getElementById('btn-reset').addEventListener('click', () => {
+  camera.position.set(3, 2, 3);
+  controls.reset();
+});
+
+document.getElementById('btn-clear').addEventListener('click', () => {
+  if (model) { scene.remove(model); model = null; }
+  if (!placeholder) {
+    placeholder = new THREE.Mesh(
+      new THREE.TorusKnotGeometry(0.55, 0.18, 140, 36),
+      new THREE.MeshStandardMaterial({ color: 0xe8a020, metalness: 0.85, roughness: 0.15 })
+    );
+    scene.add(placeholder);
+  }
+  dropZone.style.display = 'flex';
+  isWireframe = false;
+  document.getElementById('btn-wire').classList.remove('on');
+  camera.position.set(3, 2, 3);
+  controls.reset();
+});
+
+// ─── Gallery ────────────────────────────────────────────
+const gal     = document.getElementById('gal');
+const gadd    = document.getElementById('gadd');
+const galIn   = document.getElementById('gal-input');
+const lb      = document.getElementById('lb');
+const lbImg   = document.getElementById('lb-img');
+const lbClose = document.getElementById('lb-close');
+
+gadd.addEventListener('click', () => galIn.click());
+galIn.addEventListener('change', e => {
+  Array.from(e.target.files).forEach(file => {
+    const url = URL.createObjectURL(file);
+    const item = document.createElement('div');
+    item.className = 'gi';
+    const img = document.createElement('img');
+    img.src = url; img.alt = file.name;
+    img.addEventListener('click', () => { lbImg.src = url; lb.classList.add('on'); });
+    item.appendChild(img);
+    gal.insertBefore(item, gadd);
+  });
+  e.target.value = '';
+});
+
+lbClose.addEventListener('click', () => lb.classList.remove('on'));
+lb.addEventListener('click', e => { if (e.target === lb) lb.classList.remove('on'); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('on'); });
+
+// ─── Scroll animations ──────────────────────────────────
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(en => { if (en.isIntersecting) en.target.classList.add('on'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.fi').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
