@@ -3,437 +3,224 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ============================================================
+    ✏️  EDIT: Change the tab title to your name
+  ============================================================ -->
   <title>Zaldy B. Cruzado Jr. — Portfolio</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@400;500;600;700&family=Inconsolata:wght@300;400;500&display=swap" rel="stylesheet" />
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    /* ============================================================
+      ✏️  EDIT COLORS HERE — change accent color, background, etc.
+          --accent  = main highlight color (gold by default)
+          --cyan    = secondary highlight (blue-cyan)
+          --bg      = page background
+    ============================================================ */
     :root {
-      --bg: #070b0f;
-      --bg2: #0c1219;
-      --surface: #0f1720;
-      --card: #131e2b;
-      --border: #1c2c3e;
-      --accent: #e8a020;
+      --bg:         #070b0f;
+      --bg2:        #0c1219;
+      --surface:    #0f1720;
+      --card:       #131e2b;
+      --border:     #1c2c3e;
+      --accent:     #e8a020;   /* ← MAIN ACCENT COLOR */
       --accent-dim: rgba(232,160,32,0.12);
-      --cyan: #00d4ff;
-      --cyan-dim: rgba(0,212,255,0.10);
-      --green: #22c564;
-      --text: #dce6f0;
-      --text2: #90a3b8;
-      --muted: #48596e;
+      --cyan:       #00d4ff;   /* ← SECONDARY ACCENT */
+      --cyan-dim:   rgba(0,212,255,0.10);
+      --green:      #22c564;
+      --text:       #dce6f0;
+      --text2:      #90a3b8;
+      --muted:      #48596e;
       --font-display: 'Orbitron', monospace;
-      --font-head: 'Rajdhani', sans-serif;
-      --font-body: 'Inconsolata', monospace;
+      --font-head:    'Rajdhani', sans-serif;
+      --font-body:    'Inconsolata', monospace;
     }
 
     html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: var(--font-body); line-height: 1.6; overflow-x: hidden; }
 
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--font-body);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    /* Dot grid background */
     body::before {
-      content: '';
-      position: fixed; inset: 0;
+      content: ''; position: fixed; inset: 0;
       background-image: radial-gradient(circle, rgba(232,160,32,0.055) 1px, transparent 0);
-      background-size: 30px 30px;
-      pointer-events: none;
-      z-index: 0;
+      background-size: 30px 30px; pointer-events: none; z-index: 0;
     }
-
-    /* Corner accent glow */
     body::after {
-      content: '';
-      position: fixed;
-      top: -200px; right: -200px;
+      content: ''; position: fixed; top: -200px; right: -200px;
       width: 500px; height: 500px;
       background: radial-gradient(circle, rgba(232,160,32,0.04) 0%, transparent 70%);
-      pointer-events: none;
-      z-index: 0;
+      pointer-events: none; z-index: 0;
     }
 
     ::-webkit-scrollbar { width: 5px; }
     ::-webkit-scrollbar-track { background: var(--bg); }
     ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
 
-    /* ═══════════════════════════════════════ NAV ═══ */
+    /* NAV */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 200;
       display: flex; align-items: center; justify-content: space-between;
       padding: 0.9rem 2.5rem;
-      background: rgba(7,11,15,0.88);
-      backdrop-filter: blur(14px);
+      background: rgba(7,11,15,0.88); backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
-      transition: padding 0.3s;
     }
-
-    .nav-logo {
-      font-family: var(--font-display);
-      font-size: 0.85rem; font-weight: 700;
-      color: var(--accent); text-decoration: none;
-      letter-spacing: 3px;
-    }
+    .nav-logo { font-family: var(--font-display); font-size: 0.85rem; font-weight: 700; color: var(--accent); text-decoration: none; letter-spacing: 3px; }
     .nav-logo span { color: var(--text2); }
-
     .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a {
-      color: var(--text2); text-decoration: none;
-      font-family: var(--font-head); font-size: 0.82rem;
-      font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
-      transition: color 0.2s;
-    }
+    .nav-links a { color: var(--text2); text-decoration: none; font-family: var(--font-head); font-size: 0.82rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; transition: color 0.2s; }
     .nav-links a:hover { color: var(--accent); }
-
-    .nav-cta {
-      background: var(--accent); color: var(--bg);
-      padding: 0.42rem 1.2rem; text-decoration: none;
-      font-family: var(--font-head); font-weight: 700;
-      font-size: 0.82rem; letter-spacing: 1px; text-transform: uppercase;
-      transition: all 0.2s;
-      clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
-    }
+    .nav-cta { background: var(--accent); color: var(--bg); padding: 0.42rem 1.2rem; text-decoration: none; font-family: var(--font-head); font-weight: 700; font-size: 0.82rem; letter-spacing: 1px; text-transform: uppercase; transition: all 0.2s; clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px)); }
     .nav-cta:hover { background: #f5b535; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(232,160,32,0.3); }
 
-    /* ═══════════════════════════════════════ SHARED ═══ */
+    /* LAYOUT */
     .wrap { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 6rem 2rem; }
     .wrap.hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding-top: 5rem; }
-
-    .section-tag {
-      font-family: var(--font-display); font-size: 0.6rem;
-      color: var(--accent); letter-spacing: 3px; text-transform: uppercase;
-      margin-bottom: 0.6rem;
-      display: flex; align-items: center; gap: 0.75rem;
-    }
-    .section-tag::after {
-      content: ''; flex: 1; max-width: 60px; height: 1px;
-      background: var(--accent); opacity: 0.45;
-    }
-
-    .section-title {
-      font-family: var(--font-head);
-      font-size: clamp(1.9rem, 3.8vw, 2.9rem);
-      font-weight: 700; color: var(--text);
-      line-height: 1.15; margin-bottom: 3rem;
-    }
+    .section-tag { font-family: var(--font-display); font-size: 0.6rem; color: var(--accent); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.75rem; }
+    .section-tag::after { content: ''; flex: 1; max-width: 60px; height: 1px; background: var(--accent); opacity: 0.45; }
+    .section-title { font-family: var(--font-head); font-size: clamp(1.9rem, 3.8vw, 2.9rem); font-weight: 700; color: var(--text); line-height: 1.15; margin-bottom: 3rem; }
     .section-title em { color: var(--accent); font-style: normal; }
+    .divider { position: relative; z-index: 1; width: 100%; height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); }
 
-    .divider {
-      position: relative; z-index: 1;
-      width: 100%; height: 1px;
-      background: linear-gradient(90deg, transparent, var(--border), transparent);
-    }
-
-    /* ═══════════════════════════════════════ HERO ═══ */
-    .hero-inner {
-      display: grid; grid-template-columns: 1fr auto;
-      gap: 3rem; align-items: center;
-    }
-
-    .hero-location {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      font-size: 0.78rem; color: var(--text2);
-      margin-bottom: 1.5rem; letter-spacing: 1px;
-    }
-
-    .dot {
-      width: 7px; height: 7px; border-radius: 50%; background: var(--green);
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0%,100% { opacity:1; transform: scale(1); }
-      50% { opacity:0.4; transform: scale(0.7); }
-    }
-
-    .hero-name {
-      font-family: var(--font-display);
-      font-size: clamp(2.6rem, 6vw, 4.8rem);
-      font-weight: 900; line-height: 1;
-      color: var(--text); margin-bottom: 0.3rem;
-    }
+    /* HERO */
+    .hero-inner { display: grid; grid-template-columns: 1fr auto; gap: 3rem; align-items: center; }
+    .hero-location { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.78rem; color: var(--text2); margin-bottom: 1.5rem; letter-spacing: 1px; }
+    .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.7)} }
+    .hero-name { font-family: var(--font-display); font-size: clamp(2.6rem,6vw,4.8rem); font-weight: 900; line-height: 1; color: var(--text); margin-bottom: 0.3rem; }
     .hero-name .acc { color: var(--accent); }
-
-    .hero-title {
-      font-family: var(--font-head);
-      font-size: clamp(1.1rem, 2.2vw, 1.7rem);
-      font-weight: 500; color: var(--text2); margin-bottom: 1.4rem;
-    }
-
-    .hero-desc {
-      font-size: 0.92rem; color: var(--text2);
-      max-width: 520px; line-height: 1.85; margin-bottom: 2rem;
-    }
+    .hero-title { font-family: var(--font-head); font-size: clamp(1.1rem,2.2vw,1.7rem); font-weight: 500; color: var(--text2); margin-bottom: 1.4rem; }
+    .hero-desc { font-size: 0.92rem; color: var(--text2); max-width: 520px; line-height: 1.85; margin-bottom: 2rem; }
     .hero-desc strong { color: var(--text); }
-
     .tags { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-bottom: 2.5rem; }
-
-    .tag {
-      font-family: var(--font-display); font-size: 0.58rem;
-      letter-spacing: 1.5px; padding: 0.28rem 0.75rem;
-      border: 1px solid var(--border); color: var(--text2);
-      background: var(--surface); transition: all 0.2s;
-    }
+    .tag { font-family: var(--font-display); font-size: 0.58rem; letter-spacing: 1.5px; padding: 0.28rem 0.75rem; border: 1px solid var(--border); color: var(--text2); background: var(--surface); transition: all 0.2s; }
     .tag.a { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
     .tag.c { border-color: var(--cyan); color: var(--cyan); background: var(--cyan-dim); }
-
     .btn-row { display: flex; gap: 1rem; flex-wrap: wrap; }
-
-    .btn {
-      padding: 0.68rem 1.8rem; text-decoration: none;
-      font-family: var(--font-head); font-weight: 700;
-      font-size: 0.88rem; letter-spacing: 1px; text-transform: uppercase;
-      transition: all 0.2s; display: inline-block;
-    }
-    .btn-p {
-      background: var(--accent); color: var(--bg);
-      clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
-    }
+    .btn { padding: 0.68rem 1.8rem; text-decoration: none; font-family: var(--font-head); font-weight: 700; font-size: 0.88rem; letter-spacing: 1px; text-transform: uppercase; transition: all 0.2s; display: inline-block; }
+    .btn-p { background: var(--accent); color: var(--bg); clip-path: polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px)); }
     .btn-p:hover { background: #f5b535; transform: translateY(-2px); box-shadow: 0 10px 28px rgba(232,160,32,0.35); }
     .btn-o { border: 1px solid var(--border); color: var(--text); }
     .btn-o:hover { border-color: var(--accent); color: var(--accent); }
-
-    .stats {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 1px; background: var(--border);
-      margin-top: 3rem;
-    }
+    .stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--border); margin-top: 3rem; }
     .stat { background: var(--card); padding: 1.1rem 1.2rem; }
-    .stat-num {
-      font-family: var(--font-display);
-      font-size: 1.7rem; font-weight: 700;
-      color: var(--accent); line-height: 1;
-    }
+    .stat-num { font-family: var(--font-display); font-size: 1.7rem; font-weight: 700; color: var(--accent); line-height: 1; }
     .stat-num sub { font-size: 0.9rem; color: var(--text2); }
     .stat-label { font-size: 0.67rem; color: var(--text2); letter-spacing: 1px; margin-top: 0.25rem; text-transform: uppercase; }
-
-    /* Hero card */
-    .hero-card {
-      background: var(--card); border: 1px solid var(--border);
-      padding: 2rem 1.5rem; text-align: center; min-width: 190px;
-      position: relative;
-    }
-    .hero-card::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 3px;
-      background: linear-gradient(90deg, var(--accent), var(--cyan));
-    }
-
-    .avatar {
-      width: 110px; height: 110px;
-      margin: 0 auto 1rem;
-      border: 2px solid var(--accent);
-      background: var(--surface);
-      display: flex; align-items: center; justify-content: center;
-      font-family: var(--font-display); font-size: 2.2rem;
-      font-weight: 900; color: var(--accent);
-      clip-path: polygon(10% 0%,90% 0%,100% 10%,100% 90%,90% 100%,10% 100%,0% 90%,0% 10%);
-    }
+    .hero-card { background: var(--card); border: 1px solid var(--border); padding: 2rem 1.5rem; text-align: center; min-width: 190px; position: relative; }
+    .hero-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent), var(--cyan)); }
+    .avatar { width: 110px; height: 110px; margin: 0 auto 1rem; border: 2px solid var(--accent); background: var(--surface); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 2.2rem; font-weight: 900; color: var(--accent); clip-path: polygon(10% 0%,90% 0%,100% 10%,100% 90%,90% 100%,10% 100%,0% 90%,0% 10%); overflow: hidden; }
+    .avatar img { width: 100%; height: 100%; object-fit: cover; }
     .hero-card-name { font-family: var(--font-head); font-size: 0.95rem; font-weight: 700; color: var(--text); margin-bottom: 0.2rem; }
     .hero-card-sub { font-size: 0.72rem; color: var(--text2); margin-bottom: 1rem; }
+    .status { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.65rem; color: var(--green); letter-spacing: 1px; background: rgba(34,197,100,0.08); border: 1px solid rgba(34,197,100,0.28); padding: 0.28rem 0.8rem; }
 
-    .status {
-      display: inline-flex; align-items: center; gap: 0.4rem;
-      font-size: 0.65rem; color: var(--green); letter-spacing: 1px;
-      background: rgba(34,197,100,0.08);
-      border: 1px solid rgba(34,197,100,0.28);
-      padding: 0.28rem 0.8rem;
-    }
-
-    /* ═══════════════════════════════════════ ABOUT ═══ */
+    /* ABOUT */
     .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
     .about-text { font-size: 0.92rem; line-height: 1.9; color: var(--text2); }
     .about-text p { margin-bottom: 1rem; }
     .about-text strong { color: var(--text); }
-
     .hl-cards { display: flex; flex-direction: column; gap: 0.85rem; }
-    .hl {
-      background: var(--card); border: 1px solid var(--border);
-      border-left: 3px solid var(--accent); padding: 0.9rem 1rem;
-      transition: all 0.2s;
-    }
+    .hl { background: var(--card); border: 1px solid var(--border); border-left: 3px solid var(--accent); padding: 0.9rem 1rem; transition: all 0.2s; }
     .hl:hover { transform: translateX(4px); }
     .hl h4 { font-family: var(--font-head); font-size: 0.9rem; font-weight: 700; color: var(--text); margin-bottom: 0.2rem; }
     .hl p { font-size: 0.78rem; color: var(--text2); }
 
-    /* ═══════════════════════════════════════ EXPERTISE ═══ */
-    .exp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
-    .exp-card {
-      background: var(--card); border: 1px solid var(--border);
-      padding: 1.8rem; position: relative; overflow: hidden;
-      transition: all 0.3s;
-    }
-    .exp-card::after {
-      content: ''; position: absolute; bottom: 0; left: 0;
-      width: 0; height: 2px; background: var(--accent);
-      transition: width 0.35s;
-    }
+    /* EXPERTISE */
+    .exp-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); gap: 1.5rem; }
+    .exp-card { background: var(--card); border: 1px solid var(--border); padding: 1.8rem; position: relative; overflow: hidden; transition: all 0.3s; }
+    .exp-card::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--accent); transition: width 0.35s; }
     .exp-card:hover::after { width: 100%; }
     .exp-card:hover { border-color: rgba(232,160,32,0.3); transform: translateY(-5px); box-shadow: 0 14px 40px rgba(0,0,0,0.45); }
-
     .exp-num { font-family: var(--font-display); font-size: 0.58rem; color: var(--accent); letter-spacing: 2px; margin-bottom: 1rem; }
     .exp-icon { font-size: 1.8rem; margin-bottom: 0.8rem; }
     .exp-card h3 { font-family: var(--font-head); font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 0.6rem; }
     .exp-card p { font-size: 0.8rem; color: var(--text2); line-height: 1.7; margin-bottom: 1rem; }
-
     .tag-list { display: flex; flex-wrap: wrap; gap: 0.35rem; }
-    .tsm {
-      font-size: 0.62rem; padding: 0.18rem 0.55rem;
-      background: var(--surface); border: 1px solid var(--border);
-      color: var(--text2); letter-spacing: 0.5px;
-    }
+    .tsm { font-size: 0.62rem; padding: 0.18rem 0.55rem; background: var(--surface); border: 1px solid var(--border); color: var(--text2); letter-spacing: 0.5px; }
 
-    /* ═══════════════════════════════════════ PROJECTS ═══ */
-    .proj-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
-    .proj-card {
-      background: var(--card); border: 1px solid var(--border);
-      overflow: hidden; transition: all 0.3s;
-    }
+    /* PROJECTS */
+    .proj-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); gap: 1.5rem; }
+    .proj-card { background: var(--card); border: 1px solid var(--border); overflow: hidden; transition: all 0.3s; }
     .proj-card:hover { border-color: rgba(232,160,32,0.4); transform: translateY(-5px); box-shadow: 0 18px 44px rgba(0,0,0,0.5); }
-
-    .proj-img {
-      width: 100%; height: 170px;
-      background: var(--surface);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 3.2rem; opacity: 0.35;
-      position: relative; overflow: hidden;
-    }
+    .proj-img { width: 100%; height: 170px; background: var(--surface); display: flex; align-items: center; justify-content: center; font-size: 3.2rem; opacity: 0.35; position: relative; overflow: hidden; }
     .proj-img img { width: 100%; height: 100%; object-fit: cover; opacity: 1; transition: transform 0.35s; }
     .proj-card:hover .proj-img img { transform: scale(1.06); }
-
-    .proj-badge {
-      position: absolute; top: 0.6rem; right: 0.6rem;
-      font-family: var(--font-display); font-size: 0.52rem;
-      letter-spacing: 1px; padding: 0.22rem 0.55rem;
-      background: rgba(232,160,32,0.92); color: var(--bg); text-transform: uppercase;
-    }
-
+    .proj-badge { position: absolute; top: 0.6rem; right: 0.6rem; font-family: var(--font-display); font-size: 0.52rem; letter-spacing: 1px; padding: 0.22rem 0.55rem; background: rgba(232,160,32,0.92); color: var(--bg); text-transform: uppercase; }
     .proj-body { padding: 1.4rem; }
     .proj-cat { font-family: var(--font-display); font-size: 0.58rem; color: var(--accent); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 0.4rem; }
     .proj-body h3 { font-family: var(--font-head); font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 0.6rem; line-height: 1.3; }
     .proj-body p { font-size: 0.8rem; color: var(--text2); line-height: 1.7; margin-bottom: 0.9rem; }
-    .proj-links { display: flex; gap: 0.8rem; }
-    .proj-link {
-      font-size: 0.72rem; color: var(--text2); text-decoration: none;
-      letter-spacing: 0.5px; display: flex; align-items: center; gap: 0.3rem;
-      transition: color 0.2s;
-    }
+    .proj-links { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+    .proj-link { font-size: 0.72rem; color: var(--text2); text-decoration: none; letter-spacing: 0.5px; display: flex; align-items: center; gap: 0.3rem; transition: color 0.2s; }
     .proj-link:hover { color: var(--accent); }
 
-    /* ═══════════════════════════════════════ 3D VIEWER ═══ */
-    .viewer-box {
-      background: var(--card); border: 1px solid var(--border); padding: 1.8rem;
-      margin-bottom: 1.8rem;
-    }
-    .viewer-hdr {
-      display: flex; align-items: center; justify-content: space-between;
-      margin-bottom: 1.2rem;
-    }
+    /* 3D VIEWER */
+    .viewer-box { background: var(--card); border: 1px solid var(--border); padding: 1.8rem; margin-bottom: 1.8rem; }
+    .viewer-hdr { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.2rem; flex-wrap: wrap; gap: 0.5rem; }
     .viewer-hdr h3 { font-family: var(--font-head); font-size: 1.05rem; font-weight: 700; color: var(--text); }
+    .viewer-hdr p { font-size: 0.73rem; color: var(--text2); margin-top: 0.3rem; }
     .vbadge { font-size: 0.6rem; color: var(--cyan); border: 1px solid var(--cyan); padding: 0.18rem 0.55rem; letter-spacing: 1px; }
-
-    #model-wrap {
-      width: 100%; height: 400px;
-      background: var(--bg); border: 1px solid var(--border);
-      position: relative; overflow: hidden;
-    }
+    #model-wrap { width: 100%; height: 420px; background: var(--bg); border: 1px solid var(--border); position: relative; overflow: hidden; }
     #model-canvas { width: 100%; height: 100%; display: block; }
-
-    .drop-zone {
-      position: absolute; inset: 0;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center; gap: 0.8rem;
-      cursor: pointer; transition: background 0.2s;
-    }
+    .drop-zone { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.8rem; cursor: pointer; transition: background 0.2s; }
     .drop-zone:hover, .drop-zone.hover { background: rgba(232,160,32,0.04); }
     .drop-zone .di { font-size: 3rem; opacity: 0.35; }
     .drop-zone .dt { font-family: var(--font-head); font-size: 1rem; color: var(--text2); text-align: center; }
-    .drop-zone .dh { font-size: 0.73rem; color: var(--muted); text-align: center; line-height: 1.6; }
+    .drop-zone .dh { font-size: 0.73rem; color: var(--muted); text-align: center; line-height: 1.7; }
     .drop-zone .dh em { color: var(--accent); font-style: normal; }
-
-    .drop-btn {
-      font-family: var(--font-display); font-size: 0.6rem; letter-spacing: 2px;
-      padding: 0.45rem 1.4rem; background: transparent;
-      color: var(--accent); border: 1px solid var(--accent);
-      cursor: pointer; text-transform: uppercase; transition: all 0.2s;
-    }
+    .drop-zone .dh code { background: var(--surface); padding: 0.1rem 0.4rem; color: var(--cyan); font-size: 0.72rem; }
+    .drop-btn { font-family: var(--font-display); font-size: 0.6rem; letter-spacing: 2px; padding: 0.45rem 1.4rem; background: transparent; color: var(--accent); border: 1px solid var(--accent); cursor: pointer; text-transform: uppercase; transition: all 0.2s; }
     .drop-btn:hover { background: var(--accent-dim); }
-
     .model-ctrls { display: flex; gap: 0.5rem; padding: 0.7rem 0; flex-wrap: wrap; }
-    .cbtn {
-      font-family: var(--font-display); font-size: 0.57rem;
-      padding: 0.32rem 0.9rem; background: var(--surface);
-      color: var(--text2); border: 1px solid var(--border);
-      cursor: pointer; letter-spacing: 1px; transition: all 0.2s;
-    }
+    .cbtn { font-family: var(--font-display); font-size: 0.57rem; padding: 0.32rem 0.9rem; background: var(--surface); color: var(--text2); border: 1px solid var(--border); cursor: pointer; letter-spacing: 1px; transition: all 0.2s; }
     .cbtn:hover, .cbtn.on { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
 
-    /* Gallery */
-    .gallery-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-      gap: 0.85rem; margin-bottom: 0.5rem;
-    }
-    .gi {
-      aspect-ratio: 1; background: var(--surface); border: 1px solid var(--border);
-      overflow: hidden; cursor: pointer; transition: all 0.2s;
-    }
+    /* GALLERY */
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(155px,1fr)); gap: 0.85rem; }
+    .gi { aspect-ratio: 1; background: var(--surface); border: 1px solid var(--border); overflow: hidden; cursor: pointer; transition: all 0.2s; position: relative; }
     .gi img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
     .gi:hover img { transform: scale(1.08); }
     .gi:hover { border-color: var(--accent); }
-    .gadd {
-      aspect-ratio: 1; background: var(--surface); border: 1px dashed var(--border);
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      cursor: pointer; gap: 0.35rem; font-size: 0.68rem; color: var(--muted);
-      transition: all 0.2s;
-    }
+    .gi .gi-label { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(7,11,15,0.85); font-size: 0.62rem; color: var(--text2); padding: 0.3rem 0.5rem; text-align: center; transform: translateY(100%); transition: transform 0.2s; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .gi:hover .gi-label { transform: translateY(0); }
+    .gadd { aspect-ratio: 1; background: var(--surface); border: 1px dashed var(--border); display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; gap: 0.35rem; font-size: 0.68rem; color: var(--muted); transition: all 0.2s; }
     .gadd:hover { border-color: var(--accent); color: var(--accent); }
     .gadd .plus { font-size: 1.5rem; }
 
-    /* Lightbox */
-    .lb {
-      position: fixed; inset: 0; background: rgba(0,0,0,0.95);
-      z-index: 500; display: none; align-items: center; justify-content: center;
-    }
+    /* LIGHTBOX */
+    .lb { position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 500; display: none; align-items: center; justify-content: center; flex-direction: column; gap: 0.75rem; }
     .lb.on { display: flex; }
-    .lb img { max-width: 90vw; max-height: 90vh; object-fit: contain; }
-    .lb-close {
-      position: absolute; top: 1rem; right: 1rem;
-      font-size: 2rem; color: var(--text); cursor: pointer;
-      background: none; border: none; line-height: 1;
-    }
+    .lb img { max-width: 90vw; max-height: 85vh; object-fit: contain; }
+    .lb-caption { font-size: 0.78rem; color: var(--text2); letter-spacing: 1px; }
+    .lb-close { position: absolute; top: 1rem; right: 1rem; font-size: 2rem; color: var(--text); cursor: pointer; background: none; border: none; line-height: 1; }
 
-    /* ═══════════════════════════════════════ SKILLS ═══ */
-    .sk-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2.5rem; }
-    .sk-group h4 {
-      font-family: var(--font-display); font-size: 0.6rem;
-      color: var(--accent); letter-spacing: 2px; text-transform: uppercase;
-      margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border);
-    }
-    .sk-item {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0.55rem 0; border-bottom: 1px solid rgba(28,44,62,0.5);
-    }
+    /* YOUTUBE */
+    .yt-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); gap: 1.5rem; }
+    .yt-card { background: var(--card); border: 1px solid var(--border); overflow: hidden; transition: all 0.3s; }
+    .yt-card:hover { border-color: rgba(232,160,32,0.35); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.5); }
+    .yt-embed { position: relative; width: 100%; aspect-ratio: 16/9; background: var(--bg); }
+    .yt-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
+    .yt-info { padding: 1rem 1.2rem; }
+    .yt-cat { font-family: var(--font-display); font-size: 0.55rem; color: var(--accent); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 0.35rem; }
+    .yt-info h3 { font-family: var(--font-head); font-size: 0.98rem; font-weight: 700; color: var(--text); margin-bottom: 0.35rem; line-height: 1.3; }
+    .yt-info p { font-size: 0.78rem; color: var(--text2); line-height: 1.6; }
+
+    /* SKILLS */
+    .sk-cols { display: grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); gap: 2.5rem; }
+    .sk-group h4 { font-family: var(--font-display); font-size: 0.6rem; color: var(--accent); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+    .sk-item { display: flex; align-items: center; justify-content: space-between; padding: 0.55rem 0; border-bottom: 1px solid rgba(28,44,62,0.5); }
     .sk-name { font-size: 0.83rem; color: var(--text); }
     .sk-bar-wrap { width: 76px; height: 3px; background: var(--surface); border-radius: 2px; overflow: hidden; }
-    .sk-bar { height: 100%; background: linear-gradient(90deg, var(--accent), var(--cyan)); border-radius: 2px; }
+    .sk-bar { height: 100%; background: linear-gradient(90deg,var(--accent),var(--cyan)); border-radius: 2px; }
 
-    /* ═══════════════════════════════════════ TIMELINE ═══ */
+    /* TIMELINE */
     .tl { position: relative; padding-left: 2rem; }
-    .tl::before {
-      content: ''; position: absolute; left: 0; top: 0; bottom: 0;
-      width: 1px; background: linear-gradient(to bottom, var(--accent), transparent);
-    }
+    .tl::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: linear-gradient(to bottom,var(--accent),transparent); }
     .tl-item { position: relative; padding-bottom: 2.8rem; }
-    .tl-dot {
-      position: absolute; left: -2.32rem; top: 0.2rem;
-      width: 11px; height: 11px; background: var(--accent);
-      border: 2px solid var(--bg); box-shadow: 0 0 0 2px var(--accent);
-    }
+    .tl-dot { position: absolute; left: -2.32rem; top: 0.2rem; width: 11px; height: 11px; background: var(--accent); border: 2px solid var(--bg); box-shadow: 0 0 0 2px var(--accent); }
     .tl-period { font-family: var(--font-display); font-size: 0.58rem; color: var(--accent); letter-spacing: 2px; margin-bottom: 0.45rem; }
     .tl-card { background: var(--card); border: 1px solid var(--border); padding: 1.4rem; }
     .tl-card h3 { font-family: var(--font-head); font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 0.2rem; }
@@ -442,48 +229,36 @@
     .tl-card li { font-size: 0.83rem; color: var(--text2); padding-left: 1rem; position: relative; line-height: 1.5; }
     .tl-card li::before { content: '▸'; position: absolute; left: 0; color: var(--accent); font-size: 0.68rem; top: 0.15rem; }
 
-    /* ═══════════════════════════════════════ BADGES ═══ */
-    .badges { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.9rem; }
-    .badge {
-      display: flex; align-items: center; gap: 0.9rem;
-      background: var(--card); border: 1px solid var(--border);
-      padding: 0.9rem 1rem; transition: all 0.2s;
-    }
+    /* BADGES */
+    .badges { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 0.9rem; }
+    .badge { display: flex; align-items: center; gap: 0.9rem; background: var(--card); border: 1px solid var(--border); padding: 0.9rem 1rem; transition: all 0.2s; }
     .badge:hover { border-color: var(--accent); }
     .badge-icon { font-size: 1.4rem; }
     .badge h4 { font-family: var(--font-head); font-size: 0.83rem; font-weight: 700; color: var(--text); }
     .badge p { font-size: 0.7rem; color: var(--text2); margin-top: 0.1rem; }
 
-    /* ═══════════════════════════════════════ CONTACT ═══ */
+    /* CONTACT */
     .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
     .contact-intro p { font-size: 0.92rem; color: var(--text2); line-height: 1.85; margin-bottom: 2rem; }
     .cl-links { display: flex; flex-direction: column; gap: 0.85rem; }
-    .cl {
-      display: flex; align-items: center; gap: 1rem;
-      background: var(--card); border: 1px solid var(--border);
-      text-decoration: none; padding: 0.95rem 1rem; transition: all 0.2s;
-    }
+    .cl { display: flex; align-items: center; gap: 1rem; background: var(--card); border: 1px solid var(--border); text-decoration: none; padding: 0.95rem 1rem; transition: all 0.2s; }
     .cl:hover { border-color: var(--accent); transform: translateX(4px); }
     .cl-icon { font-size: 1.2rem; width: 38px; text-align: center; }
     .cl-lbl { font-size: 0.67rem; color: var(--text2); letter-spacing: 1px; text-transform: uppercase; }
     .cl-val { font-size: 0.88rem; color: var(--text); margin-top: 0.1rem; }
 
-    /* ═══════════════════════════════════════ FOOTER ═══ */
-    footer {
-      position: relative; z-index: 1; text-align: center;
-      padding: 2rem; border-top: 1px solid var(--border);
-      font-size: 0.73rem; color: var(--muted);
-    }
+    /* FOOTER */
+    footer { position: relative; z-index: 1; text-align: center; padding: 2rem; border-top: 1px solid var(--border); font-size: 0.73rem; color: var(--muted); }
     footer span { color: var(--accent); }
 
-    /* ═══════════════════════════════════════ ANIMATIONS ═══ */
+    /* ANIMATIONS */
     .fi { opacity: 0; transform: translateY(22px); transition: opacity 0.65s ease, transform 0.65s ease; }
     .fi.on { opacity: 1; transform: translateY(0); }
-    .fi:nth-child(2) { transition-delay: 0.1s; }
-    .fi:nth-child(3) { transition-delay: 0.2s; }
-    .fi:nth-child(4) { transition-delay: 0.3s; }
+    .fi:nth-child(2){transition-delay:0.1s}.fi:nth-child(3){transition-delay:0.2s}.fi:nth-child(4){transition-delay:0.3s}
 
-    /* ═══════════════════════════════════════ RESPONSIVE ═══ */
+    /* EDIT HINT LABELS (visible in code only — shown as inline tips in viewer) */
+    .edit-note { display: none; }
+
     @media (max-width: 820px) {
       .nav-links { display: none; }
       .hero-inner { grid-template-columns: 1fr; }
@@ -497,35 +272,53 @@
 </head>
 <body>
 
-<!-- ══ NAV ══ -->
+<!-- ════════════════════════════════════════════════════════════
+  ✏️  NAV — Edit your logo text and nav links here
+════════════════════════════════════════════════════════════ -->
 <nav>
-  <a href="#" class="nav-logo">ZaldyCruzado</span></a>
+  <a href="#" class="nav-logo">DRAKOZ<span>.FCJ</span></a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#expertise">Expertise</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#creative">3D &amp; Gallery</a></li>
+    <li><a href="#videos">Videos</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+  <!-- ✏️ EDIT: Change the href to your email -->
   <a href="mailto:cruzado.zaldy.072603@gmail.com" class="nav-cta">Hire Me</a>
 </nav>
 
-<!-- ══ HERO ══ -->
+
+<!-- ════════════════════════════════════════════════════════════
+  ✏️  HERO SECTION
+  — Edit your name, title, description, and tags below
+════════════════════════════════════════════════════════════ -->
 <div class="wrap hero" id="hero">
   <div class="hero-inner">
     <div>
+
+      <!-- ✏️ EDIT: Your location + status -->
       <div class="hero-location">
         <span class="dot"></span>
         Bacoor City, Cavite · PH &nbsp;·&nbsp; Open to Engineering Roles
       </div>
+
+      <!-- ✏️ EDIT: Your name -->
       <h1 class="hero-name">ZALDY<br><span class="acc">CRUZADO</span></h1>
+
+      <!-- ✏️ EDIT: Your title/roles -->
       <p class="hero-title">Computer Engineer · Hardware Designer · 3D Maker</p>
+
+      <!-- ✏️ EDIT: Short bio shown in hero -->
       <p class="hero-desc">
         BS Computer Engineering graduate specializing in <strong>embedded systems, IoT hardware</strong>, and
-        <strong>3D design & fabrication</strong>. Built scalable multi-device systems, real-time wearables,
+        <strong>3D design &amp; fabrication</strong>. Built scalable multi-device systems, real-time wearables,
         and 3D-printed enclosures — from firmware to final form factor.
       </p>
+
+      <!-- ✏️ EDIT: Skill tags — class="tag a" = gold, class="tag c" = cyan, class="tag" = grey -->
       <div class="tags">
         <span class="tag a">ESP32</span>
         <span class="tag a">Embedded Systems</span>
@@ -538,142 +331,136 @@
         <span class="tag">C++</span>
         <span class="tag">REST API</span>
       </div>
+
       <div class="btn-row">
         <a href="#projects" class="btn btn-p">View Projects</a>
         <a href="#creative" class="btn btn-o">3D Models</a>
         <a href="#contact" class="btn btn-o">Get In Touch</a>
       </div>
+
+      <!-- ✏️ EDIT: Hero stats — change numbers/labels -->
       <div class="stats">
-        <div class="stat">
-          <div class="stat-num">5<sub>+</sub></div>
-          <div class="stat-label">Projects Built</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num">300<sub>h</sub></div>
-          <div class="stat-label">R&amp;D Internship</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num">2026</div>
-          <div class="stat-label">BS CompEngr Grad</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num">🏆</div>
-          <div class="stat-label">Top Thesis</div>
-        </div>
+        <div class="stat"><div class="stat-num">5<sub>+</sub></div><div class="stat-label">Projects Built</div></div>
+        <div class="stat"><div class="stat-num">300<sub>h</sub></div><div class="stat-label">R&amp;D Internship</div></div>
+        <div class="stat"><div class="stat-num">2026</div><div class="stat-label">BS CompE Grad</div></div>
+        <div class="stat"><div class="stat-num">🏆</div><div class="stat-label">Top Thesis</div></div>
       </div>
     </div>
+
+    <!-- ════════════════════════════════════════════════════
+      ✏️  PROFILE PHOTO CARD (top-right of hero)
+      Replace the "ZC" initials with your actual photo:
+      1. Put your photo (e.g. photo.jpg) in the same folder as index.html
+      2. Replace the line below with:
+         <img src="photo.jpg" alt="Zaldy Cruzado">
+      Recommended size: 300×300px, square crop
+    ════════════════════════════════════════════════════ -->
     <div class="hero-card">
-      <div class="avatar">ZC</div>
+      <div class="avatar">
+        <!-- OPTION A: Initials (default) -->
+        ZC
+        <!-- OPTION B: Uncomment below and delete "ZC" above to use a photo -->
+        <!-- <img src="photo.jpg" alt="Zaldy Cruzado"> -->
+      </div>
       <div class="hero-card-name">Zaldy B. Cruzado Jr.</div>
-      <div class="hero-card-sub">BS CompEngr · STI Las Piñas · 2026</div>
+      <div class="hero-card-sub">BS CompE · STI Las Piñas · 2026</div>
       <span class="status"><span class="dot"></span> Open to Work</span>
     </div>
+
   </div>
 </div>
 
 <div class="divider"></div>
 
-<!-- ══ ABOUT ══ -->
+<!-- ABOUT -->
 <div class="wrap" id="about">
   <div class="section-tag">01 / About Me</div>
   <h2 class="section-title">Builder. Maker. <em>Engineer.</em></h2>
   <div class="about-grid">
     <div class="about-text fi">
-      <p>
-        I'm a Computer Engineering graduate from STI College Las Piñas with a passion for
-        <strong>building hardware that works in the real world</strong>. From engineering multi-channel SMS gateway
-        appliances to assembling wearable biosensors and 3D-printing custom enclosures — I care about the
-        full product, from circuit board to form factor.
-      </p>
-      <p>
-        During my R&amp;D internship at <strong>IoT Technologies Incorporated</strong>, I designed and shipped
-        OmniTXT — a production-grade IoT appliance with embedded firmware, a Python/Flask backend,
-        web dashboard, REST API, and a 3D-printed enclosure.
-      </p>
-      <p>
-        Outside engineering, I create — <strong>3D modeling in Blender</strong>, music production in FL Studio,
-        digital illustration in Clip Studio Art, and video editing in Premiere Pro. I believe the best engineers
-        build with craft and intention.
-      </p>
+      <!-- ✏️ EDIT: Your about paragraphs -->
+      <p>I'm a Computer Engineering graduate from STI College Las Piñas with a passion for <strong>building hardware that works in the real world</strong>. From engineering multi-channel SMS gateway appliances to assembling wearable biosensors and 3D-printing custom enclosures — I care about the full product, from circuit board to form factor.</p>
+      <p>During my R&amp;D internship at <strong>IoT Technologies Incorporated</strong>, I designed and shipped OmniTXT — a production-grade IoT appliance with embedded firmware, a Python/Flask backend, web dashboard, REST API, and a 3D-printed enclosure.</p>
+      <p>Outside engineering, I create — <strong>3D modeling in Blender</strong>, music production in FL Studio, digital illustration in Clip Studio Art, and video editing in Premiere Pro. I believe the best engineers build with craft and intention.</p>
     </div>
     <div class="hl-cards fi">
-      <div class="hl">
-        <h4>🔬 R&amp;D Intern — IoT Technologies Inc.</h4>
-        <p>Designed and shipped the OmniTXT 16-channel SMS gateway appliance from hardware to full deployment.</p>
-      </div>
-      <div class="hl">
-        <h4>🏆 Top Thesis Candidate</h4>
-        <p>Recognized at ICT Research Symposium 2025 for technical delivery and data analysis excellence.</p>
-      </div>
-      <div class="hl">
-        <h4>🎯 Best Research Presenter</h4>
-        <p>Wearable Heart Rate Monitor achieving 88.52% CAD prediction accuracy via Logistic Regression.</p>
-      </div>
-      <div class="hl">
-        <h4>🎮 Game Changer Champion</h4>
-        <p>Illutrace anti-slip light tracing board — champion at the 2024 Entrepreneurship Expo.</p>
-      </div>
+      <!-- ✏️ EDIT: Highlight cards — change emoji, title, description -->
+      <div class="hl"><h4>🔬 R&amp;D Intern — IoT Technologies Inc.</h4><p>Designed and shipped the OmniTXT 16-channel SMS gateway appliance from hardware to full deployment.</p></div>
+      <div class="hl"><h4>🏆 Top Thesis Candidate</h4><p>Recognized at ICT Research Symposium 2025 for technical delivery and data analysis excellence.</p></div>
+      <div class="hl"><h4>🎯 Best Research Presenter</h4><p>Wearable Heart Rate Monitor achieving 88.52% CAD prediction accuracy via Logistic Regression.</p></div>
+      <div class="hl"><h4>🎮 Game Changer Champion</h4><p>Illutrace anti-slip light tracing board — champion at the 2024 Entrepreneurship Expo.</p></div>
     </div>
   </div>
 </div>
 
 <div class="divider"></div>
 
-<!-- ══ EXPERTISE ══ -->
+<!-- EXPERTISE -->
 <div class="wrap" id="expertise">
   <div class="section-tag">02 / Engineering Focus</div>
   <h2 class="section-title">Areas of <em>Expertise</em></h2>
   <div class="exp-grid">
+    <!-- ✏️ EDIT: Each exp-card is one expertise area. Copy/paste to add more. -->
     <div class="exp-card fi">
       <div class="exp-num">01</div>
       <div class="exp-icon">🔌</div>
       <h3>Embedded Systems &amp; IoT</h3>
       <p>Hands-on design and programming of ESP32 (38-pin, C3), Arduino, and Raspberry Pi systems — sensor integration, serial communication, GSM/SIM modems, and real-world firmware deployment.</p>
-      <div class="tag-list">
-        <span class="tsm">ESP32</span><span class="tsm">Arduino</span><span class="tsm">Raspberry Pi</span><span class="tsm">C++</span><span class="tsm">AT Commands</span>
-      </div>
+      <div class="tag-list"><span class="tsm">ESP32</span><span class="tsm">Arduino</span><span class="tsm">Raspberry Pi</span><span class="tsm">C++</span><span class="tsm">AT Commands</span></div>
     </div>
     <div class="exp-card fi">
       <div class="exp-num">02</div>
       <div class="exp-icon">🖨️</div>
       <h3>3D Design &amp; Fabrication</h3>
       <p>End-to-end hardware enclosure design using Blender and KiCad, fabricated via FDM 3D printing. Designed production-grade dual-tier enclosures with SIM access, antenna routing, and I/O panels.</p>
-      <div class="tag-list">
-        <span class="tsm">Blender</span><span class="tsm">KiCad</span><span class="tsm">FDM Printing</span><span class="tsm">PCB Design</span><span class="tsm">Soldering</span>
-      </div>
+      <div class="tag-list"><span class="tsm">Blender</span><span class="tsm">KiCad</span><span class="tsm">FDM Printing</span><span class="tsm">PCB Design</span><span class="tsm">Soldering</span></div>
     </div>
     <div class="exp-card fi">
       <div class="exp-num">03</div>
       <div class="exp-icon">🐍</div>
       <h3>Backend &amp; System Integration</h3>
       <p>Multi-threaded Python/Flask backends with REST APIs, MySQL, Apache deployment, hot-plug detection, and automatic failover — built for production IoT appliances.</p>
-      <div class="tag-list">
-        <span class="tsm">Python</span><span class="tsm">Flask</span><span class="tsm">MySQL</span><span class="tsm">REST API</span><span class="tsm">Apache</span>
-      </div>
+      <div class="tag-list"><span class="tsm">Python</span><span class="tsm">Flask</span><span class="tsm">MySQL</span><span class="tsm">REST API</span><span class="tsm">Apache</span></div>
     </div>
     <div class="exp-card fi">
       <div class="exp-num">04</div>
       <div class="exp-icon">🧬</div>
       <h3>Biosensors &amp; ML Integration</h3>
       <p>Applied Logistic Regression to MAX30102 heart rate sensor data on a wearable Seeed XIAO ESP32-C3, achieving 88.52% CAD risk prediction accuracy with a custom 3D-printed enclosure.</p>
-      <div class="tag-list">
-        <span class="tsm">MAX30102</span><span class="tsm">XIAO ESP32-C3</span><span class="tsm">Logistic Regression</span><span class="tsm">Wearables</span>
-      </div>
+      <div class="tag-list"><span class="tsm">MAX30102</span><span class="tsm">XIAO ESP32-C3</span><span class="tsm">Logistic Regression</span><span class="tsm">Wearables</span></div>
     </div>
   </div>
 </div>
 
 <div class="divider"></div>
 
-<!-- ══ PROJECTS ══ -->
+
+<!-- ════════════════════════════════════════════════════════════
+  ✏️  PROJECTS SECTION
+  Each project card has:
+    - proj-img  → put your project photo here (see instructions inside)
+    - proj-cat  → category label
+    - h3        → project title
+    - p         → description
+    - tag-list  → tech tags
+    - proj-links → GitHub / demo links
+════════════════════════════════════════════════════════════ -->
 <div class="wrap" id="projects">
   <div class="section-tag">03 / Portfolio</div>
   <h2 class="section-title">Engineering <em>Projects</em></h2>
   <div class="proj-grid">
 
+    <!-- ── PROJECT 1 ── OmniTXT ───────────────────────────────
+      ✏️  PHOTO: Replace the 📡 emoji with your image:
+          1. Place your photo (e.g. omnitxt.jpg) in the same folder as index.html
+          2. Delete the emoji line and uncomment the <img> line below
+    ─────────────────────────────────────────────────────── -->
     <div class="proj-card fi">
       <div class="proj-img">
+        <!-- OPTION A: Emoji placeholder (default) -->
         📡
+        <!-- OPTION B: Real photo — delete emoji above, uncomment below -->
+        <!-- <img src="omnitxt.jpg" alt="OmniTXT"> -->
         <span class="proj-badge">⭐ R&amp;D Internship</span>
       </div>
       <div class="proj-body">
@@ -684,13 +471,22 @@
           <span class="tsm">16× SIM</span><span class="tsm">ESP32</span><span class="tsm">Flask</span><span class="tsm">MySQL</span><span class="tsm">3D Print</span><span class="tsm">Apache</span>
         </div>
         <div class="proj-links">
+          <!-- ✏️ EDIT: Add your GitHub or demo links here -->
           <a href="https://drakozfcj.carrd.co" class="proj-link" target="_blank">↗ Portfolio</a>
+          <!-- <a href="https://github.com/youruser/omnitxt" class="proj-link" target="_blank">↗ GitHub</a> -->
         </div>
       </div>
     </div>
 
+    <!-- ── PROJECT 2 ── ALMA ───────────────────────────────────
+      ✏️  PHOTO: Replace 💊 emoji with your image:
+          <img src="alma.jpg" alt="ALMA Dispenser">
+    ─────────────────────────────────────────────────────── -->
     <div class="proj-card fi">
-      <div class="proj-img">💊</div>
+      <div class="proj-img">
+        💊
+        <!-- <img src="alma.jpg" alt="ALMA Dispenser"> -->
+      </div>
       <div class="proj-body">
         <div class="proj-cat">Embedded · Healthcare IoT</div>
         <h3>ALMA — Smart Medicine Dispenser</h3>
@@ -698,12 +494,20 @@
         <div class="tag-list" style="margin-bottom:0.9rem">
           <span class="tsm">ESP32</span><span class="tsm">PCA9685</span><span class="tsm">C++</span><span class="tsm">Sensors</span><span class="tsm">Embedded Firmware</span>
         </div>
+        <div class="proj-links">
+          <!-- ✏️ Add your links here -->
+        </div>
       </div>
     </div>
 
+    <!-- ── PROJECT 3 ── Heart Rate Monitor ───────────────────
+      ✏️  PHOTO: Replace ❤️ emoji with your image:
+          <img src="heartrate.jpg" alt="Heart Rate Monitor">
+    ─────────────────────────────────────────────────────── -->
     <div class="proj-card fi">
       <div class="proj-img">
         ❤️
+        <!-- <img src="heartrate.jpg" alt="Heart Rate Monitor"> -->
         <span class="proj-badge">⭐ Thesis — Top Candidate</span>
       </div>
       <div class="proj-body">
@@ -713,12 +517,20 @@
         <div class="tag-list" style="margin-bottom:0.9rem">
           <span class="tsm">XIAO ESP32-C3</span><span class="tsm">MAX30102</span><span class="tsm">ML</span><span class="tsm">Blender</span><span class="tsm">3D Print</span>
         </div>
+        <div class="proj-links">
+          <!-- ✏️ Add your links here -->
+        </div>
       </div>
     </div>
 
+    <!-- ── PROJECT 4 ── Illutrace ─────────────────────────────
+      ✏️  PHOTO: Replace ✏️ emoji with your image:
+          <img src="illutrace.jpg" alt="Illutrace">
+    ─────────────────────────────────────────────────────── -->
     <div class="proj-card fi">
       <div class="proj-img">
         ✏️
+        <!-- <img src="illutrace.jpg" alt="Illutrace"> -->
         <span class="proj-badge">🏆 Game Changer Champion</span>
       </div>
       <div class="proj-body">
@@ -728,23 +540,66 @@
         <div class="tag-list" style="margin-bottom:0.9rem">
           <span class="tsm">Product Design</span><span class="tsm">Prototyping</span><span class="tsm">Hardware</span>
         </div>
+        <div class="proj-links">
+          <!-- ✏️ Add your links here -->
+        </div>
       </div>
     </div>
+
+    <!-- ════════════════════════════════════════════════════════
+      ✏️  ADD A NEW PROJECT — Copy this entire block and paste it
+          above this comment to add another project card.
+    ════════════════════════════════════════════════════════
+    <div class="proj-card fi">
+      <div class="proj-img">
+        🔧
+        <img src="YOUR-PHOTO.jpg" alt="Project Name">
+        <span class="proj-badge">Your Badge</span>
+      </div>
+      <div class="proj-body">
+        <div class="proj-cat">Category · Tags</div>
+        <h3>Your Project Title</h3>
+        <p>Your project description goes here.</p>
+        <div class="tag-list" style="margin-bottom:0.9rem">
+          <span class="tsm">Tag1</span><span class="tsm">Tag2</span>
+        </div>
+        <div class="proj-links">
+          <a href="YOUR-LINK" class="proj-link" target="_blank">↗ GitHub</a>
+        </div>
+      </div>
+    </div>
+    -->
 
   </div>
 </div>
 
 <div class="divider"></div>
 
-<!-- ══ 3D VIEWER & GALLERY ══ -->
+
+<!-- ════════════════════════════════════════════════════════════
+  ✏️  3D MODEL VIEWER + PHOTO GALLERY
+  ─────────────────────────────────────────────────────────────
+  3D MODEL:
+    • Export from Blender: File → Export → glTF 2.0 (.glb)
+    • Drag your .glb file into the viewer box, OR click "Browse File"
+    • Controls: Auto-rotate, Wireframe, Reset, Clear
+
+  GALLERY:
+    • Click the [+] tile to upload photos from your device
+    • Recommended: square crops (600×600px) look best
+    • Click any photo to view fullscreen
+════════════════════════════════════════════════════════════ -->
 <div class="wrap" id="creative">
   <div class="section-tag">04 / Creative Works</div>
   <h2 class="section-title">3D Models & <em>Gallery</em></h2>
 
-  <!-- 3D Viewer -->
+  <!-- 3D VIEWER -->
   <div class="viewer-box fi">
     <div class="viewer-hdr">
-      <h3>⬡ 3D Model Viewer</h3>
+      <div>
+        <h3>⬡ 3D Model Viewer</h3>
+        <p>Drag &amp; drop your <strong>.glb</strong> or <strong>.gltf</strong> file · From Blender: <em>File → Export → glTF 2.0 (.glb)</em></p>
+      </div>
       <span class="vbadge">GLB / GLTF</span>
     </div>
     <div id="model-wrap">
@@ -753,8 +608,9 @@
         <div class="di">⬡</div>
         <div class="dt">Drop your 3D model here</div>
         <div class="dh">
-          Supports <strong>.glb</strong> / <strong>.gltf</strong> files<br>
-          <em>Blender → File &gt; Export &gt; glTF 2.0 (.glb) to convert your .blend</em>
+          Accepts <code>.glb</code> and <code>.gltf</code> files<br>
+          <em>Blender → File → Export → glTF 2.0 (.glb)</em><br>
+          Drag onto this box or click Browse below
         </div>
         <button class="drop-btn" id="pick-btn">Browse File</button>
         <input type="file" id="model-input" accept=".glb,.gltf" style="display:none">
@@ -768,13 +624,34 @@
     </div>
   </div>
 
-  <!-- Photo Gallery -->
+  <!-- ══ GALLERY ══ -->
   <div class="viewer-box fi">
     <div class="viewer-hdr">
-      <h3>📷 Project Photos &amp; Renders</h3>
+      <div>
+        <h3>📷 Project Photos &amp; Renders</h3>
+        <p>Click <strong>[+]</strong> to add photos · Recommended: square crops, 600×600px · Click any photo to fullscreen</p>
+      </div>
       <span class="vbadge">Click + to Add</span>
     </div>
     <div class="gallery-grid" id="gal">
+      <!-- ════════════════════════════════════════════════════
+        ✏️  PRE-LOAD PHOTOS HERE (optional)
+        To show photos without needing to click +, add them like this:
+        (Put the image files in the same folder as index.html)
+
+        <div class="gi">
+          <img src="omnitxt.jpg" alt="OmniTXT">
+          <div class="gi-label">OmniTXT Enclosure</div>
+        </div>
+
+        <div class="gi">
+          <img src="alma.jpg" alt="ALMA Dispenser">
+          <div class="gi-label">ALMA Dispenser</div>
+        </div>
+
+        Paste as many as you want above the gadd block below.
+      ════════════════════════════════════════════════════ -->
+
       <div class="gadd" id="gadd">
         <span class="plus">+</span>
         <span>Add Photos</span>
@@ -788,15 +665,123 @@
 <div class="lb" id="lb">
   <button class="lb-close" id="lb-close">✕</button>
   <img id="lb-img" src="" alt="">
+  <div class="lb-caption" id="lb-caption"></div>
 </div>
 
 <div class="divider"></div>
 
-<!-- ══ SKILLS ══ -->
+
+<!-- ════════════════════════════════════════════════════════════
+  ✏️  YOUTUBE VIDEOS SECTION
+  ─────────────────────────────────────────────────────────────
+  HOW TO GET THE EMBED ID:
+    1. Open your YouTube video
+    2. Look at the URL: https://www.youtube.com/watch?v=XXXXXXXXXXX
+    3. Copy the part after "v=" — that's your VIDEO ID
+    4. Replace the src URL below:
+       src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
+
+  TIPS:
+    • Adding "?rel=0" at the end hides suggested videos after playback
+    • Adding "&autoplay=0" keeps it paused until clicked (default)
+    • To add more videos, copy one entire <div class="yt-card"> block
+════════════════════════════════════════════════════════════ -->
+<div class="wrap" id="videos">
+  <div class="section-tag">05 / Videos</div>
+  <h2 class="section-title">Project <em>Demos</em></h2>
+  <div class="yt-grid">
+
+    <!-- ── VIDEO 1 ────────────────────────────────────────────
+      ✏️  Replace YOUR_VIDEO_ID_1 with your real YouTube video ID
+          Example: if URL is youtube.com/watch?v=dQw4w9WgXcQ
+                   then use: src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0"
+    ─────────────────────────────────────────────────────── -->
+    <div class="yt-card fi">
+      <div class="yt-embed">
+        <iframe
+          src="https://www.youtube.com/embed/YOUR_VIDEO_ID_1?rel=0"
+          title="OmniTXT Demo"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div class="yt-info">
+        <!-- ✏️ EDIT: Category, title, description -->
+        <div class="yt-cat">IoT · SMS Gateway</div>
+        <h3>OmniTXT — System Demo</h3>
+        <p>Live demonstration of the 16-channel SMS gateway appliance with web dashboard and bulk dispatch.</p>
+      </div>
+    </div>
+
+    <!-- ── VIDEO 2 ────────────────────────────────────────────
+      ✏️  Replace YOUR_VIDEO_ID_2 with your real YouTube video ID
+    ─────────────────────────────────────────────────────── -->
+    <div class="yt-card fi">
+      <div class="yt-embed">
+        <iframe
+          src="https://www.youtube.com/embed/YOUR_VIDEO_ID_2?rel=0"
+          title="ALMA Demo"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div class="yt-info">
+        <div class="yt-cat">Embedded · Healthcare</div>
+        <h3>ALMA — Smart Medicine Dispenser Demo</h3>
+        <p>Walkthrough of the ESP32-based smart dispenser with automated scheduling and sensor alerts.</p>
+      </div>
+    </div>
+
+    <!-- ── VIDEO 3 ────────────────────────────────────────────
+      ✏️  Replace YOUR_VIDEO_ID_3 with your real YouTube video ID
+    ─────────────────────────────────────────────────────── -->
+    <div class="yt-card fi">
+      <div class="yt-embed">
+        <iframe
+          src="https://www.youtube.com/embed/YOUR_VIDEO_ID_3?rel=0"
+          title="Thesis Demo"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div class="yt-info">
+        <div class="yt-cat">Wearable · Thesis</div>
+        <h3>Heart Rate Monitor — CAD Risk Prediction</h3>
+        <p>Thesis project demonstration — real-time heart rate monitoring with CAD risk prediction at 88.52% accuracy.</p>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════════
+      ✏️  ADD MORE VIDEOS — Copy this block and paste above here
+
+    <div class="yt-card fi">
+      <div class="yt-embed">
+        <iframe
+          src="https://www.youtube.com/embed/YOUR_VIDEO_ID?rel=0"
+          title="Your Video Title"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div class="yt-info">
+        <div class="yt-cat">Category</div>
+        <h3>Video Title</h3>
+        <p>Short description of what this video shows.</p>
+      </div>
+    </div>
+    -->
+
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
 <div class="wrap" id="skills">
-  <div class="section-tag">05 / Technical Stack</div>
-  <h2 class="section-title">Skills & <em>Tools</em></h2>
+  <div class="section-tag">06 / Technical Stack</div>
+  <h2 class="section-title">Skills &amp; <em>Tools</em></h2>
   <div class="sk-cols">
+    <!-- ✏️ EDIT: Adjust skill names and bar widths (0%–100%) -->
     <div class="sk-group fi">
       <h4>Hardware &amp; Embedded</h4>
       <div class="sk-item"><span class="sk-name">ESP32 / Arduino</span><div class="sk-bar-wrap"><div class="sk-bar" style="width:92%"></div></div></div>
@@ -804,11 +789,11 @@
       <div class="sk-item"><span class="sk-name">Circuit Integration</span><div class="sk-bar-wrap"><div class="sk-bar" style="width:85%"></div></div></div>
       <div class="sk-item"><span class="sk-name">Soldering</span><div class="sk-bar-wrap"><div class="sk-bar" style="width:82%"></div></div></div>
       <div class="sk-item"><span class="sk-name">GSM Modems / AT Commands</span><div class="sk-bar-wrap"><div class="sk-bar" style="width:88%"></div></div></div>
-      <div class="sk-item"><span class="sk-name">Sensors (MAX30102, etc.)</span><div class="sk-bar-wrap"><div class="sk-bar" style="width:85%"></div></div></div>
+      <div class="sk-item"><span class="sk-name">Sensors (MAX30102 etc.)</span><div class="sk-bar-wrap"><div class="sk-bar" style="width:85%"></div></div></div>
     </div>
     <div class="sk-group fi">
       <h4>Programming</h4>
-      <div class="sk-item"><span class="sk-name">C++ (Arduino / Embedded)</span><div class="sk-bar-wrap"><div class="sk-bar" style="width:85%"></div></div></div>
+      <div class="sk-item"><span class="sk-name">C++ (Embedded)</span><div class="sk-bar-wrap"><div class="sk-bar" style="width:85%"></div></div></div>
       <div class="sk-item"><span class="sk-name">Python / Flask</span><div class="sk-bar-wrap"><div class="sk-bar" style="width:82%"></div></div></div>
       <div class="sk-item"><span class="sk-name">MySQL</span><div class="sk-bar-wrap"><div class="sk-bar" style="width:75%"></div></div></div>
       <div class="sk-item"><span class="sk-name">Java</span><div class="sk-bar-wrap"><div class="sk-bar" style="width:65%"></div></div></div>
@@ -832,11 +817,12 @@
 
 <div class="divider"></div>
 
-<!-- ══ EXPERIENCE ══ -->
+<!-- EXPERIENCE -->
 <div class="wrap" id="experience">
-  <div class="section-tag">06 / My Journey</div>
-  <h2 class="section-title">Experience & <em>Education</em></h2>
+  <div class="section-tag">07 / My Journey</div>
+  <h2 class="section-title">Experience &amp; <em>Education</em></h2>
   <div class="tl">
+    <!-- ✏️ EDIT: Each tl-item is one timeline entry. Copy to add more. -->
     <div class="tl-item fi">
       <div class="tl-dot"></div>
       <div class="tl-period">2026 — R&amp;D INTERNSHIP</div>
@@ -905,11 +891,12 @@
 
 <div class="divider"></div>
 
-<!-- ══ ACHIEVEMENTS ══ -->
+<!-- ACHIEVEMENTS -->
 <div class="wrap" id="achievements">
-  <div class="section-tag">07 / Recognition</div>
-  <h2 class="section-title">Achievements & <em>Awards</em></h2>
+  <div class="section-tag">08 / Recognition</div>
+  <h2 class="section-title">Achievements &amp; <em>Awards</em></h2>
   <div class="badges">
+    <!-- ✏️ EDIT: Each badge is one award. Emoji + Title + Year -->
     <div class="badge fi"><span class="badge-icon">🏆</span><div><h4>Top Thesis Candidate</h4><p>ICT Research Symposium · 2025</p></div></div>
     <div class="badge fi"><span class="badge-icon">🎤</span><div><h4>Best Research Presenter</h4><p>ICT Research Symposium · 2025</p></div></div>
     <div class="badge fi"><span class="badge-icon">🎮</span><div><h4>Game Changer Champion</h4><p>Entrepreneurship Expo · 2024</p></div></div>
@@ -923,20 +910,18 @@
 
 <div class="divider"></div>
 
-<!-- ══ CONTACT ══ -->
+<!-- CONTACT -->
 <div class="wrap" id="contact">
-  <div class="section-tag">08 / Let's Connect</div>
+  <div class="section-tag">09 / Let's Connect</div>
   <h2 class="section-title">Open to <em>Engineering Roles</em></h2>
   <div class="contact-grid">
     <div class="contact-intro fi">
-      <p>
-        Looking for embedded systems, IoT hardware, or hardware-software integration roles.
-        If you need someone who can design circuits, write firmware, 3D-print enclosures,
-        and ship the full stack — let's talk.
-      </p>
+      <!-- ✏️ EDIT: Contact blurb -->
+      <p>Looking for embedded systems, IoT hardware, or hardware-software integration roles. If you need someone who can design circuits, write firmware, 3D-print enclosures, and ship the full stack — let's talk.</p>
       <a href="mailto:cruzado.zaldy.072603@gmail.com" class="btn btn-p">Send a Message</a>
     </div>
     <div class="cl-links fi">
+      <!-- ✏️ EDIT: Contact links — update href and cl-val text -->
       <a href="mailto:cruzado.zaldy.072603@gmail.com" class="cl">
         <span class="cl-icon">✉️</span>
         <div><div class="cl-lbl">Email</div><div class="cl-val">cruzado.zaldy.072603@gmail.com</div></div>
@@ -949,15 +934,29 @@
         <span class="cl-icon">🌐</span>
         <div><div class="cl-lbl">Portfolio</div><div class="cl-val">drakozfcj.carrd.co</div></div>
       </a>
+      <!-- ✏️ Add LinkedIn, GitHub, etc. below if you have them
+      <a href="https://linkedin.com/in/yourprofile" target="_blank" class="cl">
+        <span class="cl-icon">💼</span>
+        <div><div class="cl-lbl">LinkedIn</div><div class="cl-val">linkedin.com/in/yourprofile</div></div>
+      </a>
+      <a href="https://github.com/yourusername" target="_blank" class="cl">
+        <span class="cl-icon">🐙</span>
+        <div><div class="cl-lbl">GitHub</div><div class="cl-val">github.com/yourusername</div></div>
+      </a>
+      -->
     </div>
   </div>
 </div>
 
+<!-- ✏️ EDIT: Footer text -->
 <footer>
   <span>&lt;/&gt;</span> Built by Zaldy B. Cruzado Jr. · 2026 · Bacoor City, Cavite
 </footer>
 
-<!-- ══ THREE.JS ══ -->
+
+<!-- ════════════════════════════════════════════════════════════
+  THREE.JS 3D VIEWER SCRIPT — No edits needed here
+════════════════════════════════════════════════════════════ -->
 <script type="importmap">
 {
   "imports": {
@@ -972,9 +971,8 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-// ─── Renderer ───────────────────────────────────────────
-const canvas = document.getElementById('model-canvas');
-const wrap   = document.getElementById('model-wrap');
+const canvas   = document.getElementById('model-canvas');
+const wrap     = document.getElementById('model-wrap');
 const dropZone = document.getElementById('drop-zone');
 
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
@@ -984,16 +982,13 @@ renderer.outputColorSpace = THREE.SRGBColorSpace;
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.toneMappingExposure = 1.1;
 
-// ─── Scene ──────────────────────────────────────────────
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x070b0f);
-scene.fog = new THREE.FogExp2(0x070b0f, 0.035);
+scene.fog = new THREE.FogExp2(0x070b0f, 0.032);
 
-// ─── Camera ─────────────────────────────────────────────
 const camera = new THREE.PerspectiveCamera(45, 1, 0.01, 1000);
 camera.position.set(3, 2, 3);
 
-// ─── Controls ───────────────────────────────────────────
 const controls = new OrbitControls(camera, canvas);
 controls.enableDamping = true;
 controls.dampingFactor = 0.06;
@@ -1002,23 +997,15 @@ controls.autoRotateSpeed = 1.2;
 controls.minDistance = 0.5;
 controls.maxDistance = 20;
 
-// ─── Lights ─────────────────────────────────────────────
 scene.add(new THREE.AmbientLight(0xffffff, 0.35));
-
 const key = new THREE.DirectionalLight(0xffd070, 1.5);
-key.position.set(5, 8, 5);
-key.castShadow = true;
+key.position.set(5, 8, 5); key.castShadow = true;
 scene.add(key);
-
 const fill = new THREE.DirectionalLight(0x00d4ff, 0.6);
-fill.position.set(-5, 2, -4);
-scene.add(fill);
-
+fill.position.set(-5, 2, -4); scene.add(fill);
 const rim = new THREE.DirectionalLight(0xffffff, 0.25);
-rim.position.set(0, -4, -5);
-scene.add(rim);
+rim.position.set(0, -4, -5); scene.add(rim);
 
-// Ground plane
 const ground = new THREE.Mesh(
   new THREE.PlaneGeometry(20, 20),
   new THREE.MeshStandardMaterial({ color: 0x0a1018, roughness: 1, metalness: 0 })
@@ -1027,11 +1014,8 @@ ground.rotation.x = -Math.PI / 2;
 ground.position.y = -1.2;
 ground.receiveShadow = true;
 scene.add(ground);
-
-// Grid
 scene.add(new THREE.GridHelper(14, 24, 0x1c2c3e, 0x1c2c3e));
 
-// ─── Placeholder — animated torus knot ──────────────────
 let placeholder = new THREE.Mesh(
   new THREE.TorusKnotGeometry(0.55, 0.18, 140, 36),
   new THREE.MeshStandardMaterial({ color: 0xe8a020, metalness: 0.85, roughness: 0.15 })
@@ -1042,7 +1026,6 @@ let model = null;
 let isWireframe = false;
 let isAutoRotate = true;
 
-// ─── Resize ─────────────────────────────────────────────
 function resize() {
   const w = wrap.clientWidth, h = wrap.clientHeight;
   renderer.setSize(w, h, false);
@@ -1052,18 +1035,13 @@ function resize() {
 resize();
 window.addEventListener('resize', resize);
 
-// ─── Animate ────────────────────────────────────────────
 (function animate() {
   requestAnimationFrame(animate);
   controls.update();
-  if (placeholder) {
-    placeholder.rotation.y += 0.006;
-    placeholder.rotation.x += 0.002;
-  }
+  if (placeholder) { placeholder.rotation.y += 0.006; placeholder.rotation.x += 0.002; }
   renderer.render(scene, camera);
 })();
 
-// ─── Load GLB ───────────────────────────────────────────
 const loader = new GLTFLoader();
 
 function loadModel(file) {
@@ -1072,34 +1050,28 @@ function loadModel(file) {
     if (model)       { scene.remove(model); model = null; }
     if (placeholder) { scene.remove(placeholder); placeholder = null; }
     dropZone.style.display = 'none';
-
     model = gltf.scene;
     model.traverse(c => { if (c.isMesh) { c.castShadow = true; c.receiveShadow = true; } });
-
-    // Center + scale to fit
     const box = new THREE.Box3().setFromObject(model);
     const center = box.getCenter(new THREE.Vector3());
     const size   = box.getSize(new THREE.Vector3());
     const scale  = 2.2 / Math.max(size.x, size.y, size.z);
     model.scale.setScalar(scale);
     model.position.sub(center.clone().multiplyScalar(scale));
-
     scene.add(model);
     camera.position.set(3, 2, 3);
     controls.reset();
     URL.revokeObjectURL(url);
   }, undefined, err => {
     console.error(err);
-    alert('Could not load model. Please use a valid .glb or .gltf file.\n\nIn Blender: File → Export → glTF 2.0 (.glb)');
+    alert('Could not load model.\nPlease export from Blender as: File → Export → glTF 2.0 (.glb)');
   });
 }
 
-// ─── File input ─────────────────────────────────────────
 const modelInput = document.getElementById('model-input');
 document.getElementById('pick-btn').addEventListener('click', () => modelInput.click());
 modelInput.addEventListener('change', e => { if (e.target.files[0]) loadModel(e.target.files[0]); });
 
-// ─── Drag & drop ────────────────────────────────────────
 wrap.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('hover'); });
 wrap.addEventListener('dragleave', () => dropZone.classList.remove('hover'));
 wrap.addEventListener('drop', e => {
@@ -1112,26 +1084,21 @@ wrap.addEventListener('drop', e => {
   }
 });
 
-// ─── Controls ───────────────────────────────────────────
 document.getElementById('btn-rotate').addEventListener('click', function() {
   isAutoRotate = !isAutoRotate;
   controls.autoRotate = isAutoRotate;
   this.classList.toggle('on', isAutoRotate);
   this.textContent = isAutoRotate ? '⟳ Auto Rotate' : '⟳ Rotate Off';
 });
-
 document.getElementById('btn-wire').addEventListener('click', function() {
   isWireframe = !isWireframe;
   this.classList.toggle('on', isWireframe);
   const target = model || placeholder;
   if (target) target.traverse(c => { if (c.isMesh) c.material.wireframe = isWireframe; });
 });
-
 document.getElementById('btn-reset').addEventListener('click', () => {
-  camera.position.set(3, 2, 3);
-  controls.reset();
+  camera.position.set(3, 2, 3); controls.reset();
 });
-
 document.getElementById('btn-clear').addEventListener('click', () => {
   if (model) { scene.remove(model); model = null; }
   if (!placeholder) {
@@ -1144,16 +1111,16 @@ document.getElementById('btn-clear').addEventListener('click', () => {
   dropZone.style.display = 'flex';
   isWireframe = false;
   document.getElementById('btn-wire').classList.remove('on');
-  camera.position.set(3, 2, 3);
-  controls.reset();
+  camera.position.set(3, 2, 3); controls.reset();
 });
 
-// ─── Gallery ────────────────────────────────────────────
+// Gallery
 const gal     = document.getElementById('gal');
 const gadd    = document.getElementById('gadd');
 const galIn   = document.getElementById('gal-input');
 const lb      = document.getElementById('lb');
 const lbImg   = document.getElementById('lb-img');
+const lbCap   = document.getElementById('lb-caption');
 const lbClose = document.getElementById('lb-close');
 
 gadd.addEventListener('click', () => galIn.click());
@@ -1164,8 +1131,16 @@ galIn.addEventListener('change', e => {
     item.className = 'gi';
     const img = document.createElement('img');
     img.src = url; img.alt = file.name;
-    img.addEventListener('click', () => { lbImg.src = url; lb.classList.add('on'); });
+    const label = document.createElement('div');
+    label.className = 'gi-label';
+    label.textContent = file.name.replace(/\.[^/.]+$/, '');
+    img.addEventListener('click', () => {
+      lbImg.src = url;
+      lbCap.textContent = file.name.replace(/\.[^/.]+$/, '');
+      lb.classList.add('on');
+    });
     item.appendChild(img);
+    item.appendChild(label);
     gal.insertBefore(item, gadd);
   });
   e.target.value = '';
@@ -1175,11 +1150,10 @@ lbClose.addEventListener('click', () => lb.classList.remove('on'));
 lb.addEventListener('click', e => { if (e.target === lb) lb.classList.remove('on'); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('on'); });
 
-// ─── Scroll animations ──────────────────────────────────
+// Scroll animations
 const obs = new IntersectionObserver(entries => {
   entries.forEach(en => { if (en.isIntersecting) en.target.classList.add('on'); });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 document.querySelectorAll('.fi').forEach(el => obs.observe(el));
 </script>
 
