@@ -189,9 +189,9 @@
     .gi:hover { border-color: var(--accent); }
     .gi .gi-label { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(7,11,15,0.85); font-size: 0.62rem; color: var(--text2); padding: 0.3rem 0.5rem; text-align: center; transform: translateY(100%); transition: transform 0.2s; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .gi:hover .gi-label { transform: translateY(0); }
-    .gadd { aspect-ratio: 1; background: var(--surface); border: 1px dashed var(--border); display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; gap: 0.35rem; font-size: 0.68rem; color: var(--muted); transition: all 0.2s; }
-    .gadd:hover { border-color: var(--accent); color: var(--accent); }
-    .gadd .plus { font-size: 1.5rem; }
+    .gallery-group { margin-bottom: 1.8rem; }
+    .gallery-group:last-of-type { margin-bottom: 0; }
+    .gallery-group-title { font-family: var(--font-display); font-size: 0.62rem; color: var(--accent); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 0.7rem; padding-bottom: 0.4rem; border-bottom: 1px solid var(--border); }
 
     /* LIGHTBOX */
     .lb { position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 500; display: none; align-items: center; justify-content: center; flex-direction: column; gap: 0.75rem; }
@@ -312,7 +312,7 @@
       <h1 class="hero-name">ZALDY<br><span class="acc">CRUZADO</span></h1>
 
       <!-- ✏️ EDIT: Your title/roles -->
-      <p class="hero-title">Computer Engineer · Hardware Designer · 3D Maker · Audio Engineer</p>
+      <p class="hero-title">Computer Engineer · Hardware Designer · 3D Maker</p>
 
       <!-- ✏️ EDIT: Short bio shown in hero -->
       <p class="hero-desc">
@@ -641,13 +641,13 @@
         <span class="mt-icon">📡</span>
         <span class="mt-label">OmniTXT Enclosure</span>
       </button>
-      <button class="model-thumb" data-model="alma">
-        <span class="mt-icon">💊</span>
-        <span class="mt-label">ALMA Dispenser</span>
-      </button>
       <button class="model-thumb" data-model="heartrate">
+        <span class="mt-icon"></span>
+        <span class="mt-label">BEAT-IT</span>
+      </button>
+      <button class="model-thumb" data-model="vibsys">
         <span class="mt-icon">❤️</span>
-        <span class="mt-label">Heart Rate Wearable</span>
+        <span class="mt-label">Vibration SystemT</span>
       </button>
       <!-- ════════════════════════════════════════════════════
         ✏️  ADD MORE MODEL THUMBNAILS — copy this block
@@ -666,40 +666,102 @@
     </div>
   </div>
 
-  <!-- ══ GALLERY ══ -->
+  <!-- ════════════════════════════════════════════════════════════
+    ✏️  PROJECT PHOTO GALLERY (per-project, fixed — no upload)
+    ─────────────────────────────────────────────────────────────
+    This is grouped by project so visitors can see real-life (IRL)
+    build photos, renders, or process shots organized clearly.
+
+    HOW TO ADD YOUR PHOTOS:
+      1. Put your image files in the same folder as index.html
+         (or a subfolder like "photos/")
+      2. Find the project's <div class="gallery-grid"> below
+      3. Copy a <div class="gi"> block and update:
+           src="yourphoto.jpg"   ← your filename
+           alt="..."             ← short description (for accessibility)
+           gi-label              ← OPTIONAL caption shown on hover
+                                    Leave it OUT if the photo is
+                                    self-explanatory — only label
+                                    photos that need context
+                                    (e.g. "Before enclosure")
+      4. To add a whole new project gallery, copy an entire
+         <div class="gallery-group"> block (search for "GALLERY GROUP")
+
+    Click any photo to view it fullscreen.
+  ════════════════════════════════════════════════════════════ -->
   <div class="viewer-box fi">
     <div class="viewer-hdr">
       <div>
         <h3>📷 Project Photos &amp; Renders</h3>
-        <p>Click <strong>[+]</strong> to add photos · Recommended: square crops, 600×600px · Click any photo to fullscreen</p>
+        <p>Real builds, prototypes, and process shots · Click any photo to view fullscreen</p>
       </div>
-      <span class="vbadge">Click + to Add</span>
+      <span class="vbadge">IRL Photos</span>
     </div>
-    <div class="gallery-grid" id="gal">
-      <!-- ════════════════════════════════════════════════════
-        ✏️  PRE-LOAD PHOTOS HERE (optional)
-        To show photos without needing to click +, add them like this:
-        (Put the image files in the same folder as index.html)
 
+    <!-- ── GALLERY GROUP: OmniTXT ──────────────────────────────── -->
+    <div class="gallery-group">
+      <h4 class="gallery-group-title">OmniTXT — Build &amp; Assembly</h4>
+      <div class="gallery-grid">
+        <!-- ✏️ Replace these with your real photos. Delete unused ones. -->
         <div class="gi">
-          <img src="omnitxt.jpg" alt="OmniTXT">
-          <div class="gi-label">OmniTXT Enclosure</div>
+          <img src="omnitxt_1.jpg" alt="OmniTXT enclosure prototype">
+          <div class="gi-label">Enclosure Prototype</div>
         </div>
-
         <div class="gi">
-          <img src="alma.jpg" alt="ALMA Dispenser">
-          <div class="gi-label">ALMA Dispenser</div>
+          <img src="omnitxt_2.jpg" alt="OmniTXT internal wiring">
+          <div class="gi-label">Internal SIM Wiring</div>
         </div>
-
-        Paste as many as you want above the gadd block below.
-      ════════════════════════════════════════════════════ -->
-
-      <div class="gadd" id="gadd">
-        <span class="plus">+</span>
-        <span>Add Photos</span>
+        <div class="gi">
+          <img src="omnitxt_3.jpg" alt="OmniTXT final assembly">
+          <!-- No label needed — photo is self-explanatory -->
+        </div>
       </div>
-      <input type="file" id="gal-input" accept="image/*" multiple style="display:none">
     </div>
+
+    <!-- ── GALLERY GROUP: ALMA ─────────────────────────────────── -->
+    <div class="gallery-group">
+      <h4 class="gallery-group-title">ALMA — Smart Medicine Dispenser</h4>
+      <div class="gallery-grid">
+        <div class="gi">
+          <img src="alma_1.jpg" alt="ALMA dispenser assembly">
+          <div class="gi-label">Hardware Assembly</div>
+        </div>
+        <div class="gi">
+          <img src="alma_2.jpg" alt="ALMA dispenser testing">
+          <div class="gi-label">System Testing</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── GALLERY GROUP: Heart Rate Monitor ───────────────────── -->
+    <div class="gallery-group">
+      <h4 class="gallery-group-title">Heart Rate Monitor — Wearable Build</h4>
+      <div class="gallery-grid">
+        <div class="gi">
+          <img src="heartrate_1.jpg" alt="Wearable heart rate monitor">
+          <div class="gi-label">Wearable Prototype</div>
+        </div>
+        <div class="gi">
+          <img src="heartrate_2.jpg" alt="ICT Symposium presentation">
+          <div class="gi-label">ICT Symposium Presentation</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════════
+      ✏️  ADD A NEW GALLERY GROUP — copy this whole block
+
+    <div class="gallery-group">
+      <h4 class="gallery-group-title">Your Project Name</h4>
+      <div class="gallery-grid">
+        <div class="gi">
+          <img src="yourphoto.jpg" alt="Description for accessibility">
+          <div class="gi-label">Optional Caption</div>
+        </div>
+      </div>
+    </div>
+    ════════════════════════════════════════════════════════════ -->
+
   </div>
 </div>
 
@@ -1035,7 +1097,7 @@ const loadingEl = document.getElementById('model-loading');
 ════════════════════════════════════════════════════════════════ */
 const MODEL_LIBRARY = {
   omnitxt:   { file: 'omnitxt.glb',   label: 'OmniTXT Enclosure' },
-  alma:      { file: 'beatit.glb',      label: 'BEAT-IT Hardware' },
+  alma:      { file: 'beatit.glb',      label: 'BEAT-IT' },
   heartrate: { file: 'vibsys.glb', label: 'Vibration System' }
   // ✏️ Add more here, e.g.:
   // illutrace: { file: 'illutrace.glb', label: 'Illutrace Board' },
@@ -1159,36 +1221,20 @@ document.getElementById('btn-reset').addEventListener('click', () => {
   camera.position.set(3, 2, 3); controls.reset();
 });
 
-// Gallery
-const gal     = document.getElementById('gal');
-const gadd    = document.getElementById('gadd');
-const galIn   = document.getElementById('gal-input');
+// Gallery — fixed photos, click any to view fullscreen
 const lb      = document.getElementById('lb');
 const lbImg   = document.getElementById('lb-img');
 const lbCap   = document.getElementById('lb-caption');
 const lbClose = document.getElementById('lb-close');
 
-gadd.addEventListener('click', () => galIn.click());
-galIn.addEventListener('change', e => {
-  Array.from(e.target.files).forEach(file => {
-    const url = URL.createObjectURL(file);
-    const item = document.createElement('div');
-    item.className = 'gi';
-    const img = document.createElement('img');
-    img.src = url; img.alt = file.name;
-    const label = document.createElement('div');
-    label.className = 'gi-label';
-    label.textContent = file.name.replace(/\.[^/.]+$/, '');
-    img.addEventListener('click', () => {
-      lbImg.src = url;
-      lbCap.textContent = file.name.replace(/\.[^/.]+$/, '');
-      lb.classList.add('on');
-    });
-    item.appendChild(img);
-    item.appendChild(label);
-    gal.insertBefore(item, gadd);
+document.querySelectorAll('.gi').forEach(item => {
+  const img = item.querySelector('img');
+  const label = item.querySelector('.gi-label');
+  img.addEventListener('click', () => {
+    lbImg.src = img.src;
+    lbCap.textContent = label ? label.textContent : img.alt;
+    lb.classList.add('on');
   });
-  e.target.value = '';
 });
 
 lbClose.addEventListener('click', () => lb.classList.remove('on'));
