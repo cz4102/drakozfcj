@@ -156,9 +156,6 @@
     .proj-links { display: flex; gap: 0.8rem; flex-wrap: wrap; }
     .proj-link { font-size: 0.72rem; color: var(--text2); text-decoration: none; letter-spacing: 0.5px; display: flex; align-items: center; gap: 0.3rem; transition: color 0.2s; }
     .proj-link:hover { color: var(--accent); }
-    .proj-img.has-gallery { cursor: pointer; }
-    .proj-gallery-btn { position: absolute; bottom: 0.55rem; right: 0.55rem; font-family: var(--font-display); font-size: 0.58rem; letter-spacing: 1px; padding: 0.26rem 0.6rem; background: rgba(7,11,15,0.82); color: var(--cyan); border: 1px solid var(--cyan); cursor: pointer; transition: all 0.2s; z-index: 2; }
-    .proj-gallery-btn:hover { background: rgba(0,212,255,0.14); }
 
     /* 3D VIEWER */
     .viewer-box { background: var(--card); border: 1px solid var(--border); padding: 1.8rem; margin-bottom: 1.8rem; }
@@ -168,26 +165,21 @@
     .vbadge { font-size: 0.6rem; color: var(--cyan); border: 1px solid var(--cyan); padding: 0.18rem 0.55rem; letter-spacing: 1px; }
     #model-wrap { width: 100%; height: 420px; background: var(--bg); border: 1px solid var(--border); position: relative; overflow: hidden; }
     #model-canvas { width: 100%; height: 100%; display: block; }
-    .drop-zone { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.8rem; cursor: pointer; transition: background 0.2s; }
-    .drop-zone:hover, .drop-zone.hover { background: rgba(232,160,32,0.04); }
-    .drop-zone .di { font-size: 3rem; opacity: 0.35; }
-    .drop-zone .dt { font-family: var(--font-head); font-size: 1rem; color: var(--text2); text-align: center; }
-    .drop-zone .dh { font-size: 0.73rem; color: var(--muted); text-align: center; line-height: 1.7; }
-    .drop-zone .dh em { color: var(--accent); font-style: normal; }
-    .drop-zone .dh code { background: var(--surface); padding: 0.1rem 0.4rem; color: var(--cyan); font-size: 0.72rem; }
-    .drop-btn { font-family: var(--font-display); font-size: 0.6rem; letter-spacing: 2px; padding: 0.45rem 1.4rem; background: transparent; color: var(--accent); border: 1px solid var(--accent); cursor: pointer; text-transform: uppercase; transition: all 0.2s; }
-    .drop-btn:hover { background: var(--accent-dim); }
+    .model-empty { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.6rem; pointer-events: none; transition: opacity 0.25s; }
+    .model-empty.hide { opacity: 0; }
+    .model-empty .di { font-size: 3rem; opacity: 0.3; }
+    .model-empty .dt { font-family: var(--font-head); font-size: 1rem; color: var(--text2); text-align: center; }
+    .model-empty .dh { font-size: 0.73rem; color: var(--muted); text-align: center; line-height: 1.7; }
+    .model-thumbs { display: flex; gap: 0.6rem; padding: 1rem 0 0.3rem; flex-wrap: wrap; }
+    .model-thumb { display: flex; align-items: center; gap: 0.55rem; background: var(--surface); border: 1px solid var(--border); color: var(--text2); padding: 0.5rem 0.9rem; cursor: pointer; font-family: var(--font-head); font-size: 0.8rem; font-weight: 600; transition: all 0.2s; }
+    .model-thumb:hover { border-color: var(--accent); color: var(--text); }
+    .model-thumb.on { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
+    .model-thumb .mt-icon { font-size: 1.1rem; }
+    .model-loading { position: absolute; inset: 0; display: none; align-items: center; justify-content: center; background: rgba(7,11,15,0.7); font-family: var(--font-display); font-size: 0.7rem; color: var(--accent); letter-spacing: 2px; }
+    .model-loading.on { display: flex; }
     .model-ctrls { display: flex; gap: 0.5rem; padding: 0.7rem 0; flex-wrap: wrap; }
     .cbtn { font-family: var(--font-display); font-size: 0.57rem; padding: 0.32rem 0.9rem; background: var(--surface); color: var(--text2); border: 1px solid var(--border); cursor: pointer; letter-spacing: 1px; transition: all 0.2s; }
     .cbtn:hover, .cbtn.on { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
-    .model-showcase { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 1rem; }
-    .model-card { display: flex; flex-direction: column; align-items: center; gap: 0.35rem; background: var(--surface); border: 1px solid var(--border); color: var(--text2); padding: 0.7rem 0.9rem; min-width: 92px; cursor: pointer; transition: all 0.2s; font-family: var(--font-head); }
-    .model-card:hover { border-color: var(--accent); color: var(--accent); }
-    .model-card.active { border-color: var(--accent); background: var(--accent-dim); color: var(--accent); }
-    .mc-icon { font-size: 1.5rem; line-height: 1; }
-    .mc-name { font-size: 0.66rem; letter-spacing: 0.3px; text-align: center; line-height: 1.25; }
-    .model-status { position: absolute; left: 0.7rem; right: 0.7rem; bottom: 0.7rem; font-size: 0.72rem; line-height: 1.5; color: var(--accent); background: rgba(7,11,15,0.92); border: 1px solid var(--border); padding: 0.55rem 0.75rem; z-index: 4; display: none; }
-    .model-status.show { display: block; }
 
     /* GALLERY */
     .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(155px,1fr)); gap: 0.85rem; }
@@ -207,10 +199,6 @@
     .lb img { max-width: 90vw; max-height: 85vh; object-fit: contain; }
     .lb-caption { font-size: 0.78rem; color: var(--text2); letter-spacing: 1px; }
     .lb-close { position: absolute; top: 1rem; right: 1rem; font-size: 2rem; color: var(--text); cursor: pointer; background: none; border: none; line-height: 1; }
-    .lb-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 46px; height: 46px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; color: var(--text); background: rgba(255,255,255,0.04); border: 1px solid var(--border); cursor: pointer; transition: all 0.2s; line-height: 1; }
-    .lb-nav:hover { border-color: var(--accent); color: var(--accent); background: rgba(232,160,32,0.08); }
-    .lb-prev { left: 1.2rem; }
-    .lb-next { right: 1.2rem; }
 
     /* YOUTUBE */
     .yt-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); gap: 1.5rem; }
@@ -465,21 +453,6 @@
   <h2 class="section-title">Engineering <em>Projects</em></h2>
   <div class="proj-grid">
 
-    <!-- ════════════════════════════════════════════════════════
-      ✏️  EXTRA PHOTOS ON ANY PROJECT (optional)
-      Want a mini-gallery for a project instead of just one photo?
-      Add a data-extra-photos attribute to its .proj-img div, e.g.:
-
-        <div class="proj-img" data-extra-photos="omnitxt-2.jpg,omnitxt-3.jpg">
-          <img src="omnitxt.jpg" alt="OmniTXT">
-
-      The hero photo + every file you list become one clickable
-      gallery — a small "🖼 +N" badge appears, click it (or the
-      photo) to open a fullscreen viewer with ‹ › navigation.
-      Just drop the extra image files in the same folder as
-      index.html. No JS edits needed — this works automatically.
-    ════════════════════════════════════════════════════════════ -->
-
     <!-- ── PROJECT 1 ── OmniTXT ───────────────────────────────
       ✏️  PHOTO: Replace the 📡 emoji with your image:
           1. Place your photo (e.g. omnitxt.jpg) in the same folder as index.html
@@ -607,16 +580,12 @@
 
 
 <!-- ════════════════════════════════════════════════════════════
-  ✏️  3D MODEL SHOWCASE + PHOTO GALLERY
+  ✏️  3D MODEL VIEWER + PHOTO GALLERY
   ─────────────────────────────────────────────────────────────
-  3D MODEL SHOWCASE (hardcoded):
-    • Export each model from Blender: File → Export → glTF 2.0 (.glb)
-    • Put the .glb files next to index.html (paths below assume a
-      "models" subfolder, e.g. models/omnitxt.glb)
-    • Edit the <button class="model-card"> list below it (one button
-      per model). The FIRST card auto-loads on page open.
-    • Visitors can still drop/browse their own .glb to preview it —
-      click "Clear Model" first to bring back the drop zone.
+  3D MODEL:
+    • Export from Blender: File → Export → glTF 2.0 (.glb)
+    • Drag your .glb file into the viewer box, OR click "Browse File"
+    • Controls: Auto-rotate, Wireframe, Reset, Clear
 
   GALLERY:
     • Click the [+] tile to upload photos from your device
@@ -627,70 +596,74 @@
   <div class="section-tag">04 / Creative Works</div>
   <h2 class="section-title">3D Models & <em>Gallery</em></h2>
 
-  <!-- 3D VIEWER -->
+  <!-- ════════════════════════════════════════════════════════════
+    ✏️  3D MODEL SHOWCASE
+    ─────────────────────────────────────────────────────────────
+    This is now a FIXED showcase — visitors pick a model from the
+    thumbnail row below the viewer, they do NOT upload anything.
+
+    HOW TO ADD YOUR OWN MODELS — see the full step-by-step guide
+    inside the <script> block near the bottom, in the section
+    titled "MODEL LIBRARY". You only need to:
+      1. Export your .blend file as .glb (Blender: File → Export → glTF 2.0)
+      2. Put the .glb file in the same folder as index.html
+      3. Add one line to the MODEL_LIBRARY list in the script
+      4. Add one matching thumbnail button below
+
+    Everything is marked with ✏️ comments — search for "MODEL_LIBRARY"
+  ════════════════════════════════════════════════════════════ -->
   <div class="viewer-box fi">
     <div class="viewer-hdr">
       <div>
         <h3>⬡ 3D Model Showcase</h3>
-        <p>Click a model below to view it, or drop your own <strong>.glb</strong> file to preview · From Blender: <em>File → Export → glTF 2.0 (.glb)</em></p>
+        <p>Select a model below to view it in 3D · Drag to rotate · Scroll to zoom</p>
       </div>
       <span class="vbadge">GLB / GLTF</span>
     </div>
-
-    <!-- ════════════════════════════════════════════════════════
-      ✏️  MODEL SHOWCASE — one <button class="model-card"> per model
-      1. Export from Blender: File → Export → glTF 2.0 (.glb)
-      2. Place the .glb file next to index.html (these paths assume
-         a /models subfolder — e.g. models/omnitxt.glb)
-      3. Set data-src to the file path, data-name to its label,
-         and pick an emoji for mc-icon
-      4. The FIRST card auto-loads on page open. Click any card to
-         switch models.
-      The four cards below are placeholders matching your real
-      projects — swap each data-src once you've exported the
-      matching .glb file. Until then they'll just show a small
-      "couldn't load" notice in the viewer, which is expected.
-    ════════════════════════════════════════════════════════════ -->
-    <div class="model-showcase" id="model-showcase">
-      <button class="model-card active" data-src="models/omnitxt.glb" data-name="OmniTXT Enclosure">
-        <span class="mc-icon">📡</span><span class="mc-name">OmniTXT Enclosure</span>
-      </button>
-      <button class="model-card" data-src="models/alma.glb" data-name="ALMA Dispenser">
-        <span class="mc-icon">💊</span><span class="mc-name">ALMA Dispenser</span>
-      </button>
-      <button class="model-card" data-src="models/beatit.glb" data-name="BEAT-IT Wearable">
-        <span class="mc-icon">❤️</span><span class="mc-name">BEAT-IT Wearable</span>
-      </button>
-      <button class="model-card" data-src="models/illutrace.glb" data-name="Illutrace Tracing Board">
-        <span class="mc-icon">✏️</span><span class="mc-name">Illutrace Tracing Board</span>
-      </button>
-      <!-- ════════════════════════════════════════════════
-        ✏️ ADD MORE MODELS — copy this block above this comment
-      <button class="model-card" data-src="models/your-model.glb" data-name="Your Model Name">
-        <span class="mc-icon">🔧</span><span class="mc-name">Your Model Name</span>
-      </button>
-      ════════════════════════════════════════════════ -->
-    </div>
-
     <div id="model-wrap">
       <canvas id="model-canvas"></canvas>
-      <div class="drop-zone" id="drop-zone">
+      <div class="model-empty" id="model-empty">
         <div class="di">⬡</div>
-        <div class="dt">Drop your own 3D model here</div>
-        <div class="dh">
-          Preview any <code>.glb</code> or <code>.gltf</code> file<br>
-          <em>Blender → File → Export → glTF 2.0 (.glb)</em><br>
-          Drag onto this box or click Browse below
-        </div>
-        <button class="drop-btn" id="pick-btn">Browse File</button>
-        <input type="file" id="model-input" accept=".glb,.gltf" style="display:none">
+        <div class="dt">No model selected</div>
+        <div class="dh">Choose one of your models from the thumbnails below</div>
       </div>
+      <div class="model-loading" id="model-loading">LOADING MODEL…</div>
     </div>
+
+    <!-- ════════════════════════════════════════════════════════
+      ✏️  MODEL THUMBNAIL PICKER
+      Each button below represents one 3D model.
+      • data-model  → must match a "file" entry in MODEL_LIBRARY (in the script)
+      • The emoji/icon is just a placeholder thumbnail — optional to replace
+      • Copy a whole <button class="model-thumb"> block to add another model
+    ════════════════════════════════════════════════════════════ -->
+    <div class="model-thumbs" id="model-thumbs">
+      <button class="model-thumb" data-model="omnitxt">
+        <span class="mt-icon">📡</span>
+        <span class="mt-label">OmniTXT Enclosure</span>
+      </button>
+      <button class="model-thumb" data-model="alma">
+        <span class="mt-icon">💊</span>
+        <span class="mt-label">ALMA Dispenser</span>
+      </button>
+      <button class="model-thumb" data-model="heartrate">
+        <span class="mt-icon">❤️</span>
+        <span class="mt-label">Heart Rate Wearable</span>
+      </button>
+      <!-- ════════════════════════════════════════════════════
+        ✏️  ADD MORE MODEL THUMBNAILS — copy this block
+
+      <button class="model-thumb" data-model="YOUR_KEY">
+        <span class="mt-icon">🔧</span>
+        <span class="mt-label">Your Model Name</span>
+      </button>
+      ════════════════════════════════════════════════════ -->
+    </div>
+
     <div class="model-ctrls">
       <button class="cbtn on" id="btn-rotate">⟳ Auto Rotate</button>
       <button class="cbtn" id="btn-wire">⬡ Wireframe</button>
       <button class="cbtn" id="btn-reset">⌂ Reset View</button>
-      <button class="cbtn" id="btn-clear">✕ Clear Model</button>
     </div>
   </div>
 
@@ -734,9 +707,7 @@
 <!-- Lightbox -->
 <div class="lb" id="lb">
   <button class="lb-close" id="lb-close">✕</button>
-  <button class="lb-nav lb-prev" id="lb-prev">‹</button>
   <img id="lb-img" src="" alt="">
-  <button class="lb-nav lb-next" id="lb-next">›</button>
   <div class="lb-caption" id="lb-caption"></div>
 </div>
 
@@ -1024,9 +995,52 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-const canvas   = document.getElementById('model-canvas');
-const wrap     = document.getElementById('model-wrap');
-const dropZone = document.getElementById('drop-zone');
+const canvas    = document.getElementById('model-canvas');
+const wrap      = document.getElementById('model-wrap');
+const emptyMsg  = document.getElementById('model-empty');
+const loadingEl = document.getElementById('model-loading');
+
+/* ════════════════════════════════════════════════════════════════
+  ✏️  MODEL LIBRARY — THIS IS WHERE YOU REGISTER YOUR .GLB MODELS
+  ─────────────────────────────────────────────────────────────────
+  STEP-BY-STEP GUIDE:
+
+  1) EXPORT FROM BLENDER
+     Open your .blend file → File → Export → glTF 2.0 (.glb)
+     • Format: choose "glTF Binary (.glb)" — this packs everything
+       (mesh, textures, materials) into ONE file, easiest to host.
+     • Make sure "Include > Selected Objects" is OFF unless you only
+       want part of the scene.
+     • Click Export glTF 2.0, save it as e.g. "omnitxt.glb"
+
+  2) UPLOAD THE FILE
+     Put the .glb file in the SAME FOLDER as this index.html file.
+     (If you're using GitHub Pages, just put it in the repo, e.g.
+      inside a "models/" folder next to index.html.)
+
+  3) REGISTER IT BELOW
+     Add one line to the MODEL_LIBRARY object below:
+        key:  "omnitxt"        ← must match data-model="omnitxt" on the
+                                   matching <button class="model-thumb">
+                                   in the HTML above
+        file: "omnitxt.glb"    ← the filename you exported (or
+                                   "models/omnitxt.glb" if you used a folder)
+
+  4) ADD A THUMBNAIL BUTTON
+     In the HTML above (search for "MODEL THUMBNAIL PICKER"), copy a
+     <button class="model-thumb" data-model="..."> block and update
+     the data-model key + label to match.
+
+  That's it — visitors click the thumbnail, and the matching .glb loads
+  automatically. No upload button needed.
+════════════════════════════════════════════════════════════════ */
+const MODEL_LIBRARY = {
+  omnitxt:   { file: 'omnitxt.glb',   label: 'OmniTXT Enclosure' },
+  alma:      { file: 'alma.glb',      label: 'ALMA Dispenser' },
+  heartrate: { file: 'heartrate.glb', label: 'Heart Rate Wearable' }
+  // ✏️ Add more here, e.g.:
+  // illutrace: { file: 'illutrace.glb', label: 'Illutrace Board' },
+};
 
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
 renderer.setPixelRatio(window.devicePixelRatio);
@@ -1069,15 +1083,10 @@ ground.receiveShadow = true;
 scene.add(ground);
 scene.add(new THREE.GridHelper(14, 24, 0x1c2c3e, 0x1c2c3e));
 
-let placeholder = new THREE.Mesh(
-  new THREE.TorusKnotGeometry(0.55, 0.18, 140, 36),
-  new THREE.MeshStandardMaterial({ color: 0xe8a020, metalness: 0.85, roughness: 0.15 })
-);
-scene.add(placeholder);
-
 let model = null;
 let isWireframe = false;
 let isAutoRotate = true;
+let currentKey = null;
 
 function resize() {
   const w = wrap.clientWidth, h = wrap.clientHeight;
@@ -1091,106 +1100,49 @@ window.addEventListener('resize', resize);
 (function animate() {
   requestAnimationFrame(animate);
   controls.update();
-  if (placeholder) { placeholder.rotation.y += 0.006; placeholder.rotation.x += 0.002; }
   renderer.render(scene, camera);
 })();
 
 const loader = new GLTFLoader();
 
-// Status banner shown inside the viewer (e.g. when a showcase file path is wrong/missing)
-let modelStatusEl = null;
-function showModelStatus(msg) {
-  if (!modelStatusEl) {
-    modelStatusEl = document.createElement('div');
-    modelStatusEl.className = 'model-status';
-    wrap.appendChild(modelStatusEl);
-  }
-  modelStatusEl.textContent = msg;
-  modelStatusEl.classList.add('show');
-}
-function hideModelStatus() {
-  if (modelStatusEl) modelStatusEl.classList.remove('show');
-}
+function loadModelByKey(key) {
+  const entry = MODEL_LIBRARY[key];
+  if (!entry) { console.error('No model registered for key:', key); return; }
 
-function applyLoadedModel(gltf) {
-  if (model)       { scene.remove(model); model = null; }
-  if (placeholder) { scene.remove(placeholder); placeholder = null; }
-  dropZone.style.display = 'none';
-  model = gltf.scene;
-  model.traverse(c => { if (c.isMesh) { c.castShadow = true; c.receiveShadow = true; } });
-  const box = new THREE.Box3().setFromObject(model);
-  const center = box.getCenter(new THREE.Vector3());
-  const size   = box.getSize(new THREE.Vector3());
-  const scale  = 2.2 / Math.max(size.x, size.y, size.z);
-  model.scale.setScalar(scale);
-  model.position.sub(center.clone().multiplyScalar(scale));
-  scene.add(model);
-  camera.position.set(3, 2, 3);
-  controls.reset();
-}
+  loadingEl.classList.add('on');
+  emptyMsg.classList.add('hide');
 
-// Loads one of the hardcoded showcase models (on page init + when a model-card is clicked)
-function loadModelFromURL(url, displayName) {
-  hideModelStatus();
-  loader.load(url, applyLoadedModel, undefined, err => {
-    console.error('Failed to load model:', url, err);
-    showModelStatus(`⚠ Couldn't load "${displayName}" — check that ${url} exists next to index.html.`);
-    if (!model && !placeholder) {
-      placeholder = new THREE.Mesh(
-        new THREE.TorusKnotGeometry(0.55, 0.18, 140, 36),
-        new THREE.MeshStandardMaterial({ color: 0xe8a020, metalness: 0.85, roughness: 0.15 })
-      );
-      scene.add(placeholder);
-    }
-  });
-}
+  loader.load(entry.file, gltf => {
+    if (model) { scene.remove(model); model = null; }
 
-// Loads a model the visitor drags/drops or browses to manually
-function loadModel(file) {
-  const url = URL.createObjectURL(file);
-  setActiveModelCard(null);
-  hideModelStatus();
-  loader.load(url, gltf => {
-    applyLoadedModel(gltf);
-    URL.revokeObjectURL(url);
+    model = gltf.scene;
+    model.traverse(c => { if (c.isMesh) { c.castShadow = true; c.receiveShadow = true; c.material.wireframe = isWireframe; } });
+
+    const box = new THREE.Box3().setFromObject(model);
+    const center = box.getCenter(new THREE.Vector3());
+    const size   = box.getSize(new THREE.Vector3());
+    const scale  = 2.2 / Math.max(size.x, size.y, size.z, 0.0001);
+    model.scale.setScalar(scale);
+    model.position.sub(center.clone().multiplyScalar(scale));
+
+    scene.add(model);
+    camera.position.set(3, 2, 3);
+    controls.reset();
+    loadingEl.classList.remove('on');
+
+    currentKey = key;
+    document.querySelectorAll('.model-thumb').forEach(b => b.classList.toggle('on', b.dataset.model === key));
   }, undefined, err => {
     console.error(err);
-    alert('Could not load model.\nPlease export from Blender as: File → Export → glTF 2.0 (.glb)');
-    URL.revokeObjectURL(url);
+    loadingEl.classList.remove('on');
+    emptyMsg.classList.remove('hide');
+    emptyMsg.querySelector('.dt').textContent = 'Could not load model';
+    emptyMsg.querySelector('.dh').textContent = `Check that "${entry.file}" is in the same folder as index.html`;
   });
 }
 
-const modelInput = document.getElementById('model-input');
-document.getElementById('pick-btn').addEventListener('click', () => modelInput.click());
-modelInput.addEventListener('change', e => { if (e.target.files[0]) loadModel(e.target.files[0]); });
-
-// Hardcoded model showcase — clicking a card swaps the active model
-const modelCards = Array.from(document.querySelectorAll('#model-showcase .model-card'));
-function setActiveModelCard(card) {
-  modelCards.forEach(c => c.classList.remove('active'));
-  if (card) card.classList.add('active');
-}
-modelCards.forEach(card => {
-  card.addEventListener('click', () => {
-    setActiveModelCard(card);
-    loadModelFromURL(card.dataset.src, card.dataset.name || card.textContent.trim());
-  });
-});
-// Auto-load the first showcase model when the page opens
-if (modelCards.length > 0) {
-  loadModelFromURL(modelCards[0].dataset.src, modelCards[0].dataset.name);
-}
-
-wrap.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('hover'); });
-wrap.addEventListener('dragleave', () => dropZone.classList.remove('hover'));
-wrap.addEventListener('drop', e => {
-  e.preventDefault(); dropZone.classList.remove('hover');
-  const f = e.dataTransfer.files[0];
-  if (f && (f.name.endsWith('.glb') || f.name.endsWith('.gltf'))) {
-    loadModel(f);
-  } else {
-    alert('Please drop a .glb or .gltf file.\nFrom Blender: File → Export → glTF 2.0');
-  }
+document.querySelectorAll('.model-thumb').forEach(btn => {
+  btn.addEventListener('click', () => loadModelByKey(btn.dataset.model));
 });
 
 document.getElementById('btn-rotate').addEventListener('click', function() {
@@ -1202,31 +1154,13 @@ document.getElementById('btn-rotate').addEventListener('click', function() {
 document.getElementById('btn-wire').addEventListener('click', function() {
   isWireframe = !isWireframe;
   this.classList.toggle('on', isWireframe);
-  const target = model || placeholder;
-  if (target) target.traverse(c => { if (c.isMesh) c.material.wireframe = isWireframe; });
+  if (model) model.traverse(c => { if (c.isMesh) c.material.wireframe = isWireframe; });
 });
 document.getElementById('btn-reset').addEventListener('click', () => {
   camera.position.set(3, 2, 3); controls.reset();
 });
-document.getElementById('btn-clear').addEventListener('click', () => {
-  if (model) { scene.remove(model); model = null; }
-  if (!placeholder) {
-    placeholder = new THREE.Mesh(
-      new THREE.TorusKnotGeometry(0.55, 0.18, 140, 36),
-      new THREE.MeshStandardMaterial({ color: 0xe8a020, metalness: 0.85, roughness: 0.15 })
-    );
-    scene.add(placeholder);
-  }
-  dropZone.style.display = 'flex';
-  isWireframe = false;
-  document.getElementById('btn-wire').classList.remove('on');
-  setActiveModelCard(null);
-  hideModelStatus();
-  camera.position.set(3, 2, 3); controls.reset();
-});
 
-// Gallery + Lightbox (shared by the photo gallery below AND the
-// optional "extra photos" mini-gallery on project cards above)
+// Gallery
 const gal     = document.getElementById('gal');
 const gadd    = document.getElementById('gadd');
 const galIn   = document.getElementById('gal-input');
@@ -1234,34 +1168,6 @@ const lb      = document.getElementById('lb');
 const lbImg   = document.getElementById('lb-img');
 const lbCap   = document.getElementById('lb-caption');
 const lbClose = document.getElementById('lb-close');
-const lbPrev  = document.getElementById('lb-prev');
-const lbNext  = document.getElementById('lb-next');
-
-let lbImages = [];
-let lbIndex  = 0;
-let lbTitle  = '';
-
-function renderLightbox() {
-  lbImg.src = lbImages[lbIndex];
-  const multi = lbImages.length > 1;
-  lbCap.textContent = multi ? `${lbTitle} (${lbIndex + 1}/${lbImages.length})` : lbTitle;
-  lbPrev.style.display = multi ? 'flex' : 'none';
-  lbNext.style.display = multi ? 'flex' : 'none';
-}
-function openLightbox(images, startIndex, title) {
-  lbImages = images;
-  lbIndex  = startIndex || 0;
-  lbTitle  = title || '';
-  renderLightbox();
-  lb.classList.add('on');
-}
-function lbStep(delta) {
-  if (lbImages.length < 2) return;
-  lbIndex = (lbIndex + delta + lbImages.length) % lbImages.length;
-  renderLightbox();
-}
-lbPrev.addEventListener('click', e => { e.stopPropagation(); lbStep(-1); });
-lbNext.addEventListener('click', e => { e.stopPropagation(); lbStep(1); });
 
 gadd.addEventListener('click', () => galIn.click());
 galIn.addEventListener('change', e => {
@@ -1273,9 +1179,12 @@ galIn.addEventListener('change', e => {
     img.src = url; img.alt = file.name;
     const label = document.createElement('div');
     label.className = 'gi-label';
-    const caption = file.name.replace(/\.[^/.]+$/, '');
-    label.textContent = caption;
-    img.addEventListener('click', () => openLightbox([url], 0, caption));
+    label.textContent = file.name.replace(/\.[^/.]+$/, '');
+    img.addEventListener('click', () => {
+      lbImg.src = url;
+      lbCap.textContent = file.name.replace(/\.[^/.]+$/, '');
+      lb.classList.add('on');
+    });
     item.appendChild(img);
     item.appendChild(label);
     gal.insertBefore(item, gadd);
@@ -1285,36 +1194,7 @@ galIn.addEventListener('change', e => {
 
 lbClose.addEventListener('click', () => lb.classList.remove('on'));
 lb.addEventListener('click', e => { if (e.target === lb) lb.classList.remove('on'); });
-document.addEventListener('keydown', e => {
-  if (!lb.classList.contains('on')) return;
-  if (e.key === 'Escape')     lb.classList.remove('on');
-  if (e.key === 'ArrowLeft')  lbStep(-1);
-  if (e.key === 'ArrowRight') lbStep(1);
-});
-
-// ── Extra photos on project cards ──────────────────────────────
-// Activates automatically for any .proj-img that has a
-// data-extra-photos attribute (see the comment in the Projects
-// section above for how to add one). No edits needed here.
-document.querySelectorAll('.proj-img[data-extra-photos]').forEach(imgWrap => {
-  const mainImg = imgWrap.querySelector('img');
-  const extras  = imgWrap.dataset.extraPhotos.split(',').map(s => s.trim()).filter(Boolean);
-  if (!mainImg || extras.length === 0) return;
-  const photos = [mainImg.getAttribute('src'), ...extras];
-  const title  = imgWrap.closest('.proj-card')?.querySelector('h3')?.textContent.trim() || 'Project';
-
-  const badge = document.createElement('button');
-  badge.type = 'button';
-  badge.className = 'proj-gallery-btn';
-  badge.textContent = `🖼 +${extras.length}`;
-  badge.setAttribute('aria-label', `View ${photos.length} photos of ${title}`);
-  imgWrap.appendChild(badge);
-  imgWrap.classList.add('has-gallery');
-
-  const open = e => { e.stopPropagation(); openLightbox(photos, 0, title); };
-  badge.addEventListener('click', open);
-  imgWrap.addEventListener('click', open);
-});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('on'); });
 
 // Scroll animations
 const obs = new IntersectionObserver(entries => {
